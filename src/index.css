@@ -1,0 +1,81 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* You can add your own custom styles here */
+
+@layer base {
+  body {
+    @apply bg-dark-bg text-white font-sans min-h-screen overflow-x-hidden;
+  }
+}
+
+@layer components {
+  .nav-link {
+    @apply px-3 py-2 rounded-md text-sm font-medium text-white hover:bg-dark-border transition-colors duration-200;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary-blue to-secondary-blue bg-clip-text text-transparent;
+  }
+
+  .card {
+    @apply bg-dark-card/50 backdrop-blur-lg rounded-xl border border-dark-border transition-all duration-300;
+  }
+
+  .button-primary {
+    @apply px-8 py-4 bg-gradient-to-r from-primary-blue to-secondary-blue text-white font-bold rounded-lg hover:opacity-90 transition-all duration-300 transform hover:scale-105 shadow-lg shadow-primary-blue/20;
+  }
+
+  .button-secondary {
+    @apply px-8 py-4 bg-dark-card text-white font-bold rounded-lg border border-dark-border hover:bg-dark-border transition-all duration-300 transform hover:scale-105;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  @apply w-2 bg-dark-card;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-primary-blue rounded-full;
+}
+
+/* Highlight style (static) */
+.animated-highlight {
+  position: relative;
+  display: inline-block;
+  background-image: linear-gradient(to bottom, transparent 50%, rgba(33, 150, 243, 0.5) 50%);
+  background-repeat: repeat-x;
+  background-size: 1px 0.4em;
+  background-position: 0 100%;
+}
+
+/* Decorative Arrow Animation */
+.arrow-path {
+  stroke-dasharray: 400;
+  stroke-dashoffset: 400;
+  animation: none; /* Start with no animation */
+}
+
+.arrow-path.animate {
+  animation: drawPath 2s ease-in-out forwards;
+}
+
+.arrow-path-completed {
+  stroke-dasharray: 400;
+  stroke-dashoffset: 0;
+}
+
+.arrow-completed {
+  animation: none;
+}
+
+@keyframes drawPath {
+  0% {
+    stroke-dashoffset: 400;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+} 
