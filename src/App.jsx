@@ -1,30 +1,22 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HeroSection from './components/HeroSection';
-import CTASection from './components/CTASection';
-import TestimonialsSection from './components/TestimonialsSection';
-import FAQSection from './components/FAQSection';
 import LSitProgram from './l-sit-program/LSitProgram';
-import WhatIsSkillSurge from './components/WhatIsSkillSurge';
-import WhyItWorks from './components/WhyItWorks';
-import HowDifferent from './components/HowDifferent';
-import PathToSkill from './components/PathToSkill';
+import ProgramCTA from './components/ProgramCTA';
+import TimelineSection from './components/TimelineSection';
+import FAQSection from './components/FAQSection';
 
 function App() {
   return (
     <Router>
-      <div className="min-h-screen bg-dark-bg text-white">
+      <div className="min-h-screen bg-[#10142c] text-white">
         <Routes>
           <Route path="/" element={
-            <div className="space-y-20">
+            <div className="space-y-0">
               <HeroSection />
-              <WhatIsSkillSurge />
-              <WhyItWorks />
-              <HowDifferent />
-              <PathToSkill />
-              <TestimonialsSection />
+              <TimelineSection />
+              <ProgramCTA />
               <FAQSection />
-              <CTASection />
             </div>
           } />
           <Route path="/l-sit-program" element={<LSitProgram />} />

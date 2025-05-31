@@ -2,60 +2,218 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --primary-blue: #2fbfd7;
+  --primary-blue-dark: #23a6bb;
+  --secondary-blue: #2fbfd7;
+  --dark-bg: #10142c;
+  --dark-bg-lighter: #181a2e;
+  --dark-card: #181a2e;
+  --dark-border: #2fbfd7;
+  --accent-glow: 0 0 24px #2fbfd7cc;
+}
+
 /* You can add your own custom styles here */
 
 @layer base {
   body {
-    @apply bg-dark-bg text-white font-sans min-h-screen overflow-x-hidden;
+    @apply bg-dark-bg text-white font-['Inter'] antialiased;
+    background: #10142c;
+    color: #fff;
+    font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+    min-height: 100vh;
+    letter-spacing: 0.01em;
   }
 }
 
 @layer components {
   .nav-link {
-    @apply px-3 py-2 rounded-md text-sm font-medium text-white hover:bg-dark-border transition-colors duration-200;
+    @apply text-white/80 hover:text-white transition-colors duration-300;
   }
 
   .gradient-text {
-    @apply bg-gradient-to-r from-primary-blue to-secondary-blue bg-clip-text text-transparent;
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary-blue to-secondary-blue;
+    background: linear-gradient(90deg, var(--primary-blue) 0%, var(--primary-blue-dark) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .gradient-border {
+    @apply relative;
+    &::before {
+      content: '';
+      @apply absolute inset-0 rounded-lg p-[1px] bg-gradient-to-r from-primary-blue to-secondary-blue -z-10;
+    }
+  }
+
+  .hover-card {
+    @apply transition-all duration-300 hover:scale-[1.02] hover:shadow-xl hover:shadow-primary-blue/20;
+  }
+
+  .glass-card {
+    @apply bg-black/90 bg-opacity-80 backdrop-blur-lg border border-white/10 rounded-xl;
+    background: rgba(16,21,26,0.92);
+    border: 2px solid var(--dark-border);
+    box-shadow: 0 8px 32px rgba(47,191,215,0.11), var(--accent-glow);
+    backdrop-filter: blur(12px);
   }
 
   .card {
-    @apply bg-dark-card/50 backdrop-blur-lg rounded-xl border border-dark-border transition-all duration-300;
+    @apply glass-card p-6 hover-card;
   }
 
   .button-primary {
-    @apply px-8 py-4 bg-gradient-to-r from-primary-blue to-secondary-blue text-white font-bold rounded-lg hover:opacity-90 transition-all duration-300 transform hover:scale-105 shadow-lg shadow-primary-blue/20;
+    @apply px-8 py-4 bg-gradient-to-r from-primary-blue to-secondary-blue text-white font-bold rounded-lg shadow-lg shadow-primary-blue/20;
+    background: linear-gradient(90deg, #0e2328 0%, #2fd7f6 100%);
+    color: #fff;
+    font-weight: 900;
+    border-radius: 2.5rem;
+    font-size: 1.1rem;
+    padding: 0.8rem 0;
+    box-shadow: 0 4px 16px #2fbfd7aa;
+    width: 260px;
+    transition: none !important;
+    transform: none !important;
+  }
+
+  .button-primary:hover {
+    transform: none !important;
+    background: linear-gradient(90deg, #0e2328 0%, #2fd7f6 100%);
   }
 
   .button-secondary {
-    @apply px-8 py-4 bg-dark-card text-white font-bold rounded-lg border border-dark-border hover:bg-dark-border transition-all duration-300 transform hover:scale-105;
+    @apply px-8 py-4 bg-black text-white font-bold rounded-lg border border-dark-border hover:bg-dark-border transition-all duration-300 transform hover:scale-105;
   }
+
+  .cta-button, .program-btn, .sticky-cta-btn {
+    background: linear-gradient(90deg, var(--primary-blue) 0%, var(--primary-blue-dark) 100%);
+    color: #fff;
+    font-weight: 900;
+    border-radius: 2.5rem;
+    font-size: 1.3rem;
+    padding: 1.1rem 0;
+    box-shadow: 0 4px 16px #2fbfd7aa;
+    transition: background 0.2s, transform 0.15s;
+  }
+
+  .cta-button:hover, .program-btn:hover, .sticky-cta-btn:hover {
+    background: linear-gradient(90deg, var(--primary-blue-dark) 0%, var(--primary-blue) 100%);
+    transform: scale(1.04);
+  }
+
+  .bold-blue {
+    color: var(--primary-blue);
+    font-weight: 800;
+  }
+
+  .section {
+    padding: 4rem 1rem 3rem 1rem;
+    margin: 2.5rem auto 2.5rem auto;
+    border-radius: 2rem;
+    max-width: 900px;
+    box-shadow: 0 4px 24px #2fbfd711;
+  }
+
+  .hero-radial-glow::before {
+    background: radial-gradient(ellipse at center, var(--primary-blue) 0%, rgba(0,0,0,0.0) 70%);
+    opacity: 0.18;
+  }
+}
+
+/* Smooth animations */
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.5s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* Highlight animation */
+.highlight-span {
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 1s ease-out;
+}
+
+.highlight-span.animate-highlight {
+  transform: scaleX(1);
 }
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {
-  @apply w-2 bg-dark-card;
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-dark-bg;
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-primary-blue rounded-full;
+  @apply bg-primary-blue/50 rounded-full hover:bg-primary-blue/70 transition-colors;
 }
 
-/* Highlight style (static) */
-.animated-highlight {
-  position: relative;
-  display: inline-block;
-  background-image: linear-gradient(to bottom, transparent 50%, rgba(33, 150, 243, 0.5) 50%);
-  background-repeat: repeat-x;
-  background-size: 1px 0.4em;
-  background-position: 0 100%;
+/* Text selection */
+::selection {
+  @apply bg-primary-blue/20 text-white;
+}
+
+/* Focus styles */
+*:focus-visible {
+  @apply outline-none ring-2 ring-primary-blue ring-offset-2 ring-offset-dark-bg;
+}
+
+/* Loading animation */
+.loading-pulse {
+  @apply animate-pulse bg-dark-bg-lighter;
+}
+
+/* Hero section specific styles */
+.hero-gradient {
+  @apply bg-gradient-to-b from-primary-blue/10 to-transparent;
+}
+
+/* Section transitions */
+.section-transition {
+  @apply transition-all duration-700 ease-in-out;
+}
+
+/* Image hover effects */
+.img-hover-zoom {
+  @apply overflow-hidden;
+  img {
+    @apply transition-transform duration-500;
+  }
+  &:hover img {
+    @apply scale-110;
+  }
+}
+
+/* Arrow underline animation */
+.arrow-underline {
+  @apply transform origin-left transition-transform duration-500;
+}
+
+.arrow-underline:hover {
+  @apply scale-x-100;
 }
 
 /* Decorative Arrow Animation */
 .arrow-path {
   stroke-dasharray: 400;
   stroke-dashoffset: 400;
-  animation: none; /* Start with no animation */
+  animation: none;
 }
 
 .arrow-path.animate {
@@ -76,6 +234,12 @@
     stroke-dashoffset: 400;
   }
   100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes zigzag-draw {
+  to {
     stroke-dashoffset: 0;
   }
 } 

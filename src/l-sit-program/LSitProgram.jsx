@@ -2,7 +2,7 @@ import React from 'react';
 
 function LSitProgram() {
   return (
-    <div className="min-h-screen bg-dark-bg">
+    <div className="min-h-screen bg-gradient-to-br from-[#2fbfd7]/10 via-[#2196f3]/10 to-[#23a6bb]/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div className="text-center mb-16">
           <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-primary-blue to-secondary-blue bg-clip-text text-transparent">
@@ -74,7 +74,7 @@ function LSitProgram() {
               <p className="text-gray-300 mb-6">
                 Join thousands of students who have mastered the L-sit with our proven program.
               </p>
-              <button className="w-full py-4 px-6 bg-gradient-to-r from-primary-blue to-secondary-blue text-white font-bold rounded-lg hover:opacity-90 transition-all duration-300 transform hover:scale-105 shadow-lg shadow-primary-blue/20">
+              <button className="button-primary w-full">
                 Start Your L-Sit Journey
               </button>
             </div>

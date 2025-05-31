@@ -1,7 +1,7 @@
 import React from 'react';
 
 const WhyItWorks = () => (
-  <section className="my-16">
+  <section className="my-16 px-4">
     <h2 className="text-2xl md:text-3xl font-bold text-center mb-6 text-primary-blue">Why the Skill Surge System Works</h2>
     <div className="max-w-3xl mx-auto grid md:grid-cols-2 gap-8 text-lg text-gray-200">
       <ul className="space-y-4">

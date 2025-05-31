@@ -8,7 +8,7 @@ const PathToSkill = () => (
       <li>Follow the <span className="text-primary-blue font-bold">Skill Surge System</span></li>
       <li>Unlock your first skill in <span className="text-primary-blue font-bold">14 days</span></li>
     </ol>
-    <button className="mt-10 bg-gradient-to-r from-primary-blue to-secondary-blue text-white text-2xl font-bold px-12 py-5 rounded-full hover:opacity-90 transition-all duration-300 transform hover:scale-105 shadow-lg shadow-primary-blue/20">
+    <button className="button-primary mt-10">
       Start Your Skill Surge
     </button>
   </section>

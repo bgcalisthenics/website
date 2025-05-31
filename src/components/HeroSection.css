@@ -10,3 +10,14 @@
   font-weight: 700;
   opacity: 0.9;
 }
+
+.bg-method .tm {
+  font-size: 0.7em;
+  vertical-align: super;
+  margin-left: 2px;
+  font-weight: 600;
+  color: #fff !important;
+  letter-spacing: -1px;
+  -webkit-text-fill-color: #fff !important;
+  text-fill-color: #fff !important;
+}

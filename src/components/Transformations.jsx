@@ -24,9 +24,9 @@ const Transformations = () => (
             <img className="transformation-img" src={pair[0].before} alt="before" />
             <span className="transformation-label">before</span>
           </div>
-          <div style={{position: 'relative', border: '2px solid #2196f3', borderRadius: '1rem', boxShadow: '0 0 12px #21cbf388'}}>
+          <div style={{position: 'relative', border: '2px solid #2fbfd7', borderRadius: '1rem', boxShadow: '0 0 12px #2fbfd788'}}>
             <img className="transformation-img" src={pair[0].after} alt="after" />
-            <span className="transformation-label" style={{background:'#2196f3'}}>AFTER</span>
+            <span className="transformation-label" style={{background:'#2fbfd7'}}>AFTER</span>
           </div>
         </div>
       ))}

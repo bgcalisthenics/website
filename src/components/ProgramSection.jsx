@@ -84,11 +84,7 @@ function ProgramSection() {
               
               <div className="text-center">
                 <div className="text-4xl font-bold text-white mb-4">{program.price}</div>
-                <button className={`w-full py-3 px-6 rounded-lg font-bold transition-all duration-300 ${
-                  program.popular
-                    ? 'bg-gradient-to-r from-primary-blue to-secondary-blue text-white hover:opacity-90'
-                    : 'bg-dark-border text-white hover:bg-dark-border/80'
-                }`}>
+                <button className={`button-primary w-full py-3 px-6 rounded-lg font-bold transition-all duration-300`}>
                   Get Started
                 </button>
               </div>

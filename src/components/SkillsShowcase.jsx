@@ -2,7 +2,7 @@ import React from 'react';
 
 function SkillsShowcase() {
   return (
-    <div className="bg-dark-bg py-20 px-4">
+    <div className="bg-[#10142c] py-20 px-4">
       <div className="max-w-5xl mx-auto">
         {/* Weighted Skills Section */}
         <div className="text-center mb-20">
@@ -15,14 +15,26 @@ function SkillsShowcase() {
           </h3>
           
           <div className="aspect-w-16 aspect-h-9">
-            <video 
-              className="w-full rounded-2xl"
-              controls
-              poster="/weighted-skills-thumbnail.jpg"
-            >
-              <source src="/weighted-skills.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
+            <div className="relative">
+              <video 
+                className="w-full rounded-2xl border-[3px] border-[#2fbfd7] shadow-[0_0_15px_rgba(47,191,215,0.3),0_0_30px_rgba(47,191,215,0.15)]"
+                controls
+                poster="/weighted-skills-thumbnail.jpg"
+                onTimeUpdate={(e) => {
+                  const video = e.target;
+                  const progress = (video.currentTime / video.duration) * 100;
+                  video.parentElement.querySelector('.progress-bar').style.width = `${progress}%`;
+                }}
+              >
+                <source src="/weighted-skills.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+              
+              {/* Progress Bar */}
+              <div className="absolute bottom-0 left-0 right-0 h-1 bg-gray-600/30">
+                <div className="h-full transition-all duration-100 progress-bar" style={{ width: '0%', background: 'linear-gradient(to right, #ff4444, #cc0000)' }} />
+              </div>
+            </div>
           </div>
         </div>
 
@@ -40,14 +52,26 @@ function SkillsShowcase() {
           </h3>
 
           <div className="aspect-w-16 aspect-h-9">
-            <video 
-              className="w-full rounded-2xl"
-              controls
-              poster="/defying-gravity-thumbnail.jpg"
-            >
-              <source src="/defying-gravity.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
+            <div className="relative">
+              <video 
+                className="w-full rounded-2xl border-[3px] border-[#2fbfd7] shadow-[0_0_15px_rgba(47,191,215,0.3),0_0_30px_rgba(47,191,215,0.15)]"
+                controls
+                poster="/defying-gravity-thumbnail.jpg"
+                onTimeUpdate={(e) => {
+                  const video = e.target;
+                  const progress = (video.currentTime / video.duration) * 100;
+                  video.parentElement.querySelector('.progress-bar').style.width = `${progress}%`;
+                }}
+              >
+                <source src="/defying-gravity.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+              
+              {/* Progress Bar */}
+              <div className="absolute bottom-0 left-0 right-0 h-1 bg-gray-600/30">
+                <div className="h-full transition-all duration-100 progress-bar" style={{ width: '0%', background: 'linear-gradient(to right, #ff4444, #cc0000)' }} />
+              </div>
+            </div>
           </div>
         </div>
 
