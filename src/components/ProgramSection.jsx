@@ -89,7 +89,7 @@ function ProgramSection() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className={`button-primary w-full py-3 px-6 rounded-lg font-bold transition-all duration-300`}
-                  style={{ textDecoration: 'none' }}
+                  style={{ textDecoration: 'none', display: 'block', cursor: 'pointer' }}
                 >
                   Get Started
                 </a>

@@ -79,7 +79,7 @@ function LSitProgram() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="button-primary w-full"
-                style={{ textDecoration: 'none' }}
+                style={{ textDecoration: 'none', display: 'block', cursor: 'pointer' }}
               >
                 Start Your L-Sit Journey
               </a>

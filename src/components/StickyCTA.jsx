@@ -8,6 +8,7 @@ const StickyCTA = () => (
       target="_blank"
       rel="noopener noreferrer"
       className="sticky-cta-btn"
+      style={{ cursor: 'pointer' }}
     >
       Get Started Now
     </a>

@@ -199,7 +199,9 @@ function TimelineSection() {
               backdropFilter: 'blur(8px)',
               transition: 'none',
               transform: 'none',
-              textDecoration: 'none'
+              textDecoration: 'none',
+              display: 'flex',
+              cursor: 'pointer'
             }}
           >
             <span className="font-black w-full text-center">JOIN NOW</span>

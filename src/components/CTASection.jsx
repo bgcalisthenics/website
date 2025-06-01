@@ -8,7 +8,7 @@ const CTASection = () => (
       target="_blank"
       rel="noopener noreferrer"
       className="button-primary"
-      style={{ textDecoration: 'none' }}
+      style={{ textDecoration: 'none', display: 'inline-block', cursor: 'pointer' }}
     >
       Get The Blueprint Now
     </a>

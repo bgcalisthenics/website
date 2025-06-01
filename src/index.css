@@ -112,9 +112,15 @@
     width: 260px;
     transition: none !important;
     transform: none !important;
+    text-decoration: none !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
   }
 
-  .button-primary:hover {
+  .button-primary:hover,
+  a.button-primary:hover {
     background: linear-gradient(90deg, #2fbfd7 0%, #23a6bb 100%) !important;
     color: #fff !important;
     box-shadow: 0 4px 16px #2fbfd7aa !important;
@@ -124,6 +130,7 @@
     filter: none !important;
     opacity: 1 !important;
     cursor: pointer !important;
+    text-decoration: none !important;
   }
 
   .button-secondary {
@@ -296,21 +303,28 @@
 /* Global button hover override - ensure no hover effects */
 button:hover,
 .button-primary:hover,
+a.button-primary:hover,
 .button-secondary:hover,
 .cta-button:hover,
 .program-btn:hover,
 .sticky-cta-btn:hover,
+a.sticky-cta-btn:hover,
 .enhanced-button:hover,
 .hero-floating-cta:hover,
 [class*="button"]:hover,
 [class*="btn"]:hover,
-[class*="cta"]:hover {
+[class*="cta"]:hover,
+a[class*="button"]:hover,
+a[class*="btn"]:hover,
+a[class*="cta"]:hover {
   transform: none !important;
   scale: 1 !important;
   transition: none !important;
   animation: none !important;
   filter: none !important;
   opacity: 1 !important;
+  text-decoration: none !important;
+  cursor: pointer !important;
 }
 
 /* Specific override for button-primary to maintain exact styling */
