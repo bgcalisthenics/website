@@ -398,6 +398,12 @@ h1, h2, h3 {
   .mobile-video-controls .h-16 {
     height: 3rem;
   }
+
+  /* Video Gallery - Make all videos smaller and reduce spacing */
+  .video-gallery-container .aspect-\[828\/1792\] {
+    transform: scale(0.6);
+    margin: -150px -30px;
+  }
 }
 
 /* Extra Small Mobile Devices */

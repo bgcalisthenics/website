@@ -6,14 +6,14 @@ function ProgramCTA() {
     <div className="bg-[#10142c] pb-0 px-4">
       <div className="max-w-7xl mx-auto">
         {/* Image Section */}
-        <div className="mb-12">
-          <img 
-            src="/images/hj.png" 
-            alt="Calisthenics transformation" 
-            className="w-full h-auto rounded-xl"
+        <div className="mb-12 my-8 sm:my-6">
+          <img
+            src="/images/hj.png"
+            alt="Calisthenics transformation"
+            className="w-screen sm:w-full max-w-none sm:max-w-full rounded-none sm:rounded-xl transform scale-[2] sm:scale-100 -mx-4 sm:mx-0"
           />
           {/* Bullet Points */}
-          <ul className="mt-8 space-y-4 text-left max-w-md mx-auto">
+          <ul className="mt-16 sm:mt-8 space-y-4 text-left max-w-md mx-auto">
             <li className="flex items-start">
               <span className="text-[#2fbfd7] mr-3 text-xl">•</span>
               <span className="text-gray-200 text-lg">Send me a video of your exercise — push-ups, planche, muscle-up, etc.</span>
@@ -28,15 +28,15 @@ function ProgramCTA() {
             </li>
           </ul>
           {/* ng.png Image */}
-          <div className="mt-8 flex justify-center items-center">
-            <img 
-              src="/images/ng.png" 
-              alt="Additional visual" 
-              className="w-full h-auto rounded-xl mx-auto"
+          <div className="mt-16 mb-16 flex justify-center items-center -mx-4 sm:mx-0 my-8 sm:my-6">
+            <img
+              src="/images/ng.png"
+              alt="Additional visual"
+              className="w-screen sm:w-full max-w-none sm:max-w-full rounded-none sm:rounded-xl transform scale-[2.2] sm:scale-100"
             />
           </div>
           {/* Bullet Points under ng.png */}
-          <ul className="mt-8 space-y-4 text-left max-w-md mx-auto">
+          <ul className="mt-16 space-y-4 text-left max-w-md mx-auto">
             <li className="flex items-start">
               <span className="text-[#2fbfd7] mr-3 text-xl">•</span>
               <span className="text-gray-200 text-lg">Join thousands of students in the community</span>
@@ -56,12 +56,12 @@ function ProgramCTA() {
 
         {/* Price & Refund Policy Section */}
         <div className="mt-16 flex flex-col items-center justify-center text-center">
-          <h2 className="text-3xl md:text-4xl font-black mb-6 relative">
-            "Is There A{' '}
+          <h2 className="text-2xl sm:text-4xl md:text-5xl font-black mb-6 relative">
+            <span className="block">Is There A Money-Back</span>
             <span className="relative inline-block text-white">
-              Money-Back-Guarantee
+              Guarantee
               <span className="absolute bottom-0 left-0 w-full h-3 bg-[#2fbfd7] opacity-30 -z-10"></span>
-            </span>?"
+            </span>?
           </h2>
           <div className="max-w-lg mx-auto mb-8 text-left">
             <p className="mb-4 text-gray-200 text-lg">Many people ask if there are refunds.</p>

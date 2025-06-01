@@ -136,26 +136,25 @@ function HeroSection() {
   };
 
   return (
-    <div className="min-h-screen bg-[#10142c] pt-20 pb-8 px-4">
+    <div className="min-h-screen bg-[#10142c] pt-12 pb-8 px-4">
       <div className="max-w-5xl mx-auto">
         <div className="hero-radial-glow">
           {/* Main Headline */}
-          <h1 className="font-black text-center mb-6 animate-fade-in bg-cover bg-center text-white py-4 leading-tight"
+          <h1 className="font-black text-center -mb-4 animate-fade-in bg-cover bg-center text-white py-4 leading-tight"
             style={{ backgroundImage: 'url("/images/bg-headline.png")' }}
           >
-            {/* Mobile version - clean and simple */}
-            <span className="block sm:hidden text-xl leading-tight">
+            {/* Mobile version - maximized for full screen width */}
+            <span className="block sm:hidden leading-tight px-0 w-full text-center mx-auto" style={{fontSize: '1.75rem'}}>
               <span className="block">Here's How You can</span>
               <span className="block">
                 <span className="relative inline-block text-white">
-                  Achieve Your First
+                  Achieve
                   <span className="absolute bottom-0 left-0 w-full h-2 bg-[#2fbfd7] opacity-30 -z-10"></span>
-                </span>
+                </span> Your First
               </span>
               <span className="block">Calisthenics Skill in Just</span>
-              <span className="block">
-                <span className="gradient-text font-black">14 Days in 2025</span> by Following
-              </span>
+              <span className="block"><span className="gradient-text font-black">14 Days</span> in 2025 by</span>
+              <span className="block">Following</span>
               <span className="block">
                 <span className="gradient-text font-black bg-method">the BG Method<span className="tm">™</span></span>
               </span>
@@ -230,33 +229,33 @@ function HeroSection() {
           {/* Rounded bar containing the profile picture and social media icons */}
           <div className="-mt-12 sm:-mt-16 w-full max-w-xs sm:max-w-2xl mx-auto rounded-full py-2 sm:py-3 px-2 sm:px-4 shadow-lg flex flex-row items-center justify-center space-x-1 sm:space-x-4 overflow-x-hidden whitespace-nowrap z-50 relative glass-card">
             {/* Profile Picture inside the bar */}
-            <div className="w-9 h-9 sm:w-16 sm:h-16 rounded-full flex-shrink-0 overflow-hidden img-hover-zoom">
+            <div className="w-7 h-7 sm:w-16 sm:h-16 rounded-full flex-shrink-0 overflow-hidden img-hover-zoom">
               <img src="/images/png.jpg" alt="Ben's Profile Picture" className="w-full h-full object-cover" />
             </div>
             {/* Social Media Links */}
-            <div className="flex flex-row items-center space-x-2 sm:space-x-4">
+            <div className="flex flex-row items-center space-x-1 sm:space-x-4">
               {/* Instagram */}
               <div className="flex items-center space-x-1 sm:space-x-2 p-0.5 sm:p-2 rounded-lg flex-shrink-0">
-                <img src="/images/instagram.webp" alt="Instagram" className="w-4 h-4 sm:w-6 sm:h-6"/>
+                <img src="/images/instagram.webp" alt="Instagram" className="w-3 h-3 sm:w-6 sm:h-6"/>
                 <div className="text-left">
-                  <p className="text-white font-black text-[9px] sm:text-sm leading-none">BGCALISTHENICS</p>
-                  <p className="text-gray-400 text-[8px] sm:text-xs leading-none">250k</p>
+                  <p className="text-white font-black text-[7px] sm:text-sm leading-none">BGCALISTHENICS</p>
+                  <p className="text-gray-400 text-[6px] sm:text-xs leading-none">250k</p>
                 </div>
               </div>
               {/* TikTok */}
               <div className="flex items-center space-x-1 sm:space-x-2 p-0.5 sm:p-2 rounded-lg flex-shrink-0">
-                <img src="/images/tiktok.webp" alt="TikTok" className="w-4 h-4 sm:w-8 sm:h-8"/>
+                <img src="/images/tiktok.webp" alt="TikTok" className="w-3 h-3 sm:w-8 sm:h-8"/>
                 <div className="text-left">
-                  <p className="text-white font-black text-[9px] sm:text-sm leading-none">BGCALISTHENICS</p>
-                  <p className="text-gray-400 text-[8px] sm:text-xs leading-none">137k</p>
+                  <p className="text-white font-black text-[7px] sm:text-sm leading-none">BGCALISTHENICS</p>
+                  <p className="text-gray-400 text-[6px] sm:text-xs leading-none">137k</p>
                 </div>
               </div>
               {/* YouTube */}
               <div className="flex items-center space-x-1 sm:space-x-2 p-0.5 sm:p-2 rounded-lg flex-shrink-0">
-                <img src="/images/youtube.webp" alt="YouTube" className="w-4 h-4 sm:w-6 sm:h-6"/>
+                <img src="/images/youtube.webp" alt="YouTube" className="w-3 h-3 sm:w-6 sm:h-6"/>
                 <div className="text-left">
-                  <p className="text-white font-black text-[9px] sm:text-sm leading-none">BGCALISTHENICS</p>
-                  <p className="text-gray-400 text-[8px] sm:text-xs leading-none">17k</p>
+                  <p className="text-white font-black text-[7px] sm:text-sm leading-none">BGCALISTHENICS</p>
+                  <p className="text-gray-400 text-[6px] sm:text-xs leading-none">17k</p>
                 </div>
               </div>
             </div>
@@ -498,9 +497,11 @@ function HeroSection() {
             </div>
 
             {/* New text below video 3 */}
-            <p className="text-center text-base sm:text-lg italic text-white mt-8 flex items-center justify-center px-4">
-              <img src="/images/up.png" alt="Up arrow icon" className="w-4 h-4 sm:w-5 sm:h-5 text-white mr-2"/>
-              All of these student's achieved crazy strength with ‎  <span className="text-[#2fbfd7]">the BG Method</span>
+            <p className="text-center text-sm sm:text-lg italic text-white mt-8 flex items-center justify-center px-4">
+              <span className="block sm:inline">
+                <img src="/images/up.png" alt="Up arrow icon" className="w-4 h-4 text-white mr-1 inline sm:hidden"/>
+                All of these student's achieved crazy strength with <span className="text-[#2fbfd7]">the BG Method</span>
+              </span>
             </p>
 
             <h3 className="text-xl sm:text-2xl md:text-3xl font-black text-center mt-12 mb-6 text-white px-4 leading-tight">And you are probably wondering how these students achieved these skills so fast...</h3>

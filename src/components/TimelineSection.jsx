@@ -203,7 +203,7 @@ function TimelineSection() {
           <div className="flex items-center mt-4">
             {/* Avatars */}
             <div className="flex items-center">
-              <img src="/images/people.png" alt="People who joined" className="w-24 h-auto object-contain" />
+              <img src="/images/people2x.png" alt="People who joined" className="w-24 h-auto object-contain" />
             </div>
             {/* Text */}
             <span className="ml-4 text-white/90 font-medium text-base tracking-wide" style={{ textShadow: '0 2px 8px #000a' }}>
@@ -224,11 +224,11 @@ function TimelineSection() {
             </span>{' '}
             to help you with the journey
           </h2>
-          <div className="py-4 px-4 sm:px-0">
+          <div className="py-4 -mx-4 sm:mx-0 sm:px-0">
             <img
               src="/images/vids.png"
               alt="What you will get"
-              className="w-full max-w-[900px] rounded-2xl mx-auto"
+              className="w-screen sm:w-full max-w-none sm:max-w-[900px] rounded-none sm:rounded-2xl transform scale-125 sm:scale-100"
               loading="eager"
               decoding="async"
             />
@@ -254,11 +254,11 @@ function TimelineSection() {
             </ul>
           </div>
           {/* img.png after the text */}
-          <div className="px-4 sm:px-0">
+          <div className="px-4 sm:px-0 -mx-4 sm:mx-0 my-8 sm:my-6">
             <img
               src="/images/img.png"
               alt="Additional visual"
-              className="w-full max-w-[900px] rounded-2xl mx-auto"
+              className="w-screen sm:w-full max-w-none sm:max-w-[900px] rounded-none sm:rounded-2xl transform scale-150 sm:scale-100"
               loading="eager"
               decoding="async"
             />
@@ -275,11 +275,11 @@ function TimelineSection() {
             </li>
           </ul>
           {/* bng.png after hj.png */}
-          <div className="px-4 sm:px-0 mt-6">
+          <div className="px-4 sm:px-0 -mx-4 sm:mx-0 mt-6 my-8 sm:my-6">
             <img
               src="/images/bng.png"
               alt="bng visual"
-              className="w-full max-w-[900px] rounded-2xl mx-auto"
+              className="w-screen sm:w-full max-w-none sm:max-w-[900px] rounded-none sm:rounded-2xl transform scale-125 sm:scale-100"
               loading="eager"
               decoding="async"
             />

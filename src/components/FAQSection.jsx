@@ -173,22 +173,14 @@ const FAQSection = () => {
         {/* Additional heading after FAQ */}
         <div style={{textAlign: 'center', marginTop: 80, paddingTop: 40}}>
           <h1 className="text-3xl md:text-4xl font-black mb-2 relative" style={{color: '#fff', lineHeight: 1.2, marginBottom: 80, margin: 0}}>
-            Here are more results of people<br />using the BG Method
+            Here are more results of people<br />using the BG Method (10+ students)
           </h1>
         </div>
 
-        {/* Results Videos - 3x4 Grid Layout */}
-        <div style={{maxWidth: '1400px', margin: '0 auto', padding: '0 1rem'}}>
+        {/* Results Videos - Mobile: Stacked, Desktop: 3x4 Grid Layout */}
+        <div style={{maxWidth: '1400px', margin: '0 auto', padding: '0 1rem', marginTop: '16px'}} className="video-gallery-container">
           {/* Row 1 */}
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(3, 1fr)',
-            gap: '32px',
-            marginBottom: '32px',
-            '@media (max-width: 768px)': {
-              gridTemplateColumns: '1fr'
-            }
-          }}>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-0 sm:gap-0 mb-0">
             {/* Front Lever Video */}
             <div
               className="aspect-[828/1792] relative flex items-center justify-center cursor-pointer"
@@ -359,15 +351,7 @@ const FAQSection = () => {
           </div>
 
           {/* Row 2 */}
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(3, 1fr)',
-            gap: '32px',
-            marginBottom: '32px',
-            '@media (max-width: 768px)': {
-              gridTemplateColumns: '1fr'
-            }
-          }}>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-0 sm:gap-0 mb-0">
             {/* HSPU Video */}
             <div
               className="aspect-[828/1792] relative flex items-center justify-center cursor-pointer"
@@ -538,15 +522,7 @@ const FAQSection = () => {
           </div>
 
           {/* Row 3 */}
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(3, 1fr)',
-            gap: '32px',
-            marginBottom: '32px',
-            '@media (max-width: 768px)': {
-              gridTemplateColumns: '1fr'
-            }
-          }}>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-0 sm:gap-0 mb-0">
             {/* Adv Tuck Video */}
             <div
               className="aspect-[828/1792] relative flex items-center justify-center cursor-pointer"
@@ -717,15 +693,7 @@ const FAQSection = () => {
           </div>
 
           {/* Row 4 */}
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(3, 1fr)',
-            gap: '32px',
-            marginBottom: '32px',
-            '@media (max-width: 768px)': {
-              gridTemplateColumns: '1fr'
-            }
-          }}>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-0 sm:gap-0 mb-0">
             {/* Muscle Up Video */}
             <div
               className="aspect-[828/1792] relative flex items-center justify-center cursor-pointer"
