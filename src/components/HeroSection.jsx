@@ -68,6 +68,7 @@ function HeroSection() {
               if (videoElement === videoRef3.current && !userPausedVideo3) shouldPlay = true;
 
               if (shouldPlay) {
+                // Force play for mobile compatibility
                 videoElement.play().then(() => {
                   // Update the corresponding playing state
                   if (videoElement === videoRef1.current) setIsPlaying1(true);
@@ -75,6 +76,10 @@ function HeroSection() {
                   if (videoElement === videoRef3.current) setIsPlaying3(true);
                 }).catch((error) => {
                   console.log("Auto-play failed:", error);
+                  // On mobile, sometimes autoplay fails, so we'll show the play button
+                  if (videoElement === videoRef1.current) setIsPlaying1(false);
+                  if (videoElement === videoRef2.current) setIsPlaying2(false);
+                  if (videoElement === videoRef3.current) setIsPlaying3(false);
                 });
               }
             }
@@ -91,7 +96,7 @@ function HeroSection() {
         });
       },
       {
-        threshold: 0.3, // Trigger when 30% of the video is visible
+        threshold: 0.1, // Trigger when 10% of the video is visible (more aggressive for mobile)
       }
     );
 
@@ -107,6 +112,38 @@ function HeroSection() {
       if (videoRef3.current) observer.unobserve(videoRef3.current);
     };
   }, [userPausedVideo1, userPausedVideo2, userPausedVideo3]); // Re-run when any userPausedVideo changes
+
+  // Ensure videos are loaded and ready to play on mobile
+  useEffect(() => {
+    const videos = [videoRef1.current, videoRef2.current, videoRef3.current];
+
+    videos.forEach((video, index) => {
+      if (video) {
+        // Force load the video
+        video.load();
+
+        // Set up event listeners for mobile compatibility
+        const handleLoadedData = () => {
+          // Video is loaded and ready to play
+          console.log(`Video ${index + 1} loaded and ready`);
+        };
+
+        const handleCanPlay = () => {
+          // Video can start playing
+          console.log(`Video ${index + 1} can play`);
+        };
+
+        video.addEventListener('loadeddata', handleLoadedData);
+        video.addEventListener('canplay', handleCanPlay);
+
+        // Cleanup
+        return () => {
+          video.removeEventListener('loadeddata', handleLoadedData);
+          video.removeEventListener('canplay', handleCanPlay);
+        };
+      }
+    });
+  }, []);
 
   const togglePlayPause = (videoRef, setIsPlaying) => {
     if (videoRef.current) {
@@ -319,9 +356,11 @@ function HeroSection() {
               onMouseLeave={() => setIsHovering1(false)}
             >
               <video
+                autoPlay
                 muted
                 loop
                 playsInline
+                preload="metadata"
                 className="absolute top-0 left-0 w-full h-full object-cover rounded-lg"
                 ref={videoRef1}
                 onPlay={() => handlePlay(setIsPlaying1)}
@@ -380,9 +419,11 @@ function HeroSection() {
               onMouseLeave={() => setIsHovering2(false)}
             >
               <video
+                autoPlay
                 muted
                 loop
                 playsInline
+                preload="metadata"
                 className="absolute top-0 left-0 w-full h-full object-cover rounded-lg"
                 ref={videoRef2}
                 onPlay={() => handlePlay(setIsPlaying2)}
@@ -441,9 +482,11 @@ function HeroSection() {
               onMouseLeave={() => setIsHovering3(false)}
             >
               <video
+                autoPlay
                 muted
                 loop
                 playsInline
+                preload="metadata"
                 className="absolute top-0 left-0 w-full h-full object-cover rounded-lg"
                 ref={videoRef3}
                 onPlay={() => handlePlay(setIsPlaying3)}
