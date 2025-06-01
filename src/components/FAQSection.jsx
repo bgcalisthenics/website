@@ -131,10 +131,165 @@ const FAQSection = () => {
   const [isHovering11, setIsHovering11] = useState(false);
   const [isHovering12, setIsHovering12] = useState(false);
 
-  // Disabled auto-play - videos only play when user clicks
-  // useEffect(() => {
-  //   // Auto-play functionality disabled
-  // }, []);
+  // Auto-play videos when they come into view and pause when they leave
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const videoElement = entry.target;
+          if (entry.isIntersecting) {
+            // Video is in view - auto-play it only if user hasn't manually paused it
+            if (videoElement && videoElement.paused) {
+              let shouldPlay = false;
+              let setIsPlaying = null;
+
+              // Determine which video this is and if it should play
+              if (videoElement === video1Ref.current && !userPausedVideo1) {
+                shouldPlay = true;
+                setIsPlaying = setIsPlaying1;
+              } else if (videoElement === video2Ref.current && !userPausedVideo2) {
+                shouldPlay = true;
+                setIsPlaying = setIsPlaying2;
+              } else if (videoElement === video3Ref.current && !userPausedVideo3) {
+                shouldPlay = true;
+                setIsPlaying = setIsPlaying3;
+              } else if (videoElement === video4Ref.current && !userPausedVideo4) {
+                shouldPlay = true;
+                setIsPlaying = setIsPlaying4;
+              } else if (videoElement === video5Ref.current && !userPausedVideo5) {
+                shouldPlay = true;
+                setIsPlaying = setIsPlaying5;
+              } else if (videoElement === video6Ref.current && !userPausedVideo6) {
+                shouldPlay = true;
+                setIsPlaying = setIsPlaying6;
+              } else if (videoElement === video7Ref.current && !userPausedVideo7) {
+                shouldPlay = true;
+                setIsPlaying = setIsPlaying7;
+              } else if (videoElement === video8Ref.current && !userPausedVideo8) {
+                shouldPlay = true;
+                setIsPlaying = setIsPlaying8;
+              } else if (videoElement === video9Ref.current && !userPausedVideo9) {
+                shouldPlay = true;
+                setIsPlaying = setIsPlaying9;
+              } else if (videoElement === video10Ref.current && !userPausedVideo10) {
+                shouldPlay = true;
+                setIsPlaying = setIsPlaying10;
+              } else if (videoElement === video11Ref.current && !userPausedVideo11) {
+                shouldPlay = true;
+                setIsPlaying = setIsPlaying11;
+              } else if (videoElement === video12Ref.current && !userPausedVideo12) {
+                shouldPlay = true;
+                setIsPlaying = setIsPlaying12;
+              }
+
+              if (shouldPlay) {
+                videoElement.play().then(() => {
+                  if (setIsPlaying) setIsPlaying(true);
+                }).catch((error) => {
+                  console.log("Auto-play failed:", error);
+                  if (setIsPlaying) setIsPlaying(false);
+                });
+              }
+            }
+          } else {
+            // Video is out of view - pause it to save bandwidth
+            if (videoElement && !videoElement.paused) {
+              videoElement.pause();
+
+              // Update the corresponding playing state
+              if (videoElement === video1Ref.current) setIsPlaying1(false);
+              else if (videoElement === video2Ref.current) setIsPlaying2(false);
+              else if (videoElement === video3Ref.current) setIsPlaying3(false);
+              else if (videoElement === video4Ref.current) setIsPlaying4(false);
+              else if (videoElement === video5Ref.current) setIsPlaying5(false);
+              else if (videoElement === video6Ref.current) setIsPlaying6(false);
+              else if (videoElement === video7Ref.current) setIsPlaying7(false);
+              else if (videoElement === video8Ref.current) setIsPlaying8(false);
+              else if (videoElement === video9Ref.current) setIsPlaying9(false);
+              else if (videoElement === video10Ref.current) setIsPlaying10(false);
+              else if (videoElement === video11Ref.current) setIsPlaying11(false);
+              else if (videoElement === video12Ref.current) setIsPlaying12(false);
+            }
+          }
+        });
+      },
+      {
+        threshold: 0.5, // Video needs to be 50% visible to trigger autoplay
+        rootMargin: '0px 0px -10% 0px' // Start playing slightly before fully in view
+      }
+    );
+
+    // Observe all video elements
+    const videoRefs = [
+      video1Ref, video2Ref, video3Ref, video4Ref, video5Ref, video6Ref,
+      video7Ref, video8Ref, video9Ref, video10Ref, video11Ref, video12Ref
+    ];
+
+    videoRefs.forEach(ref => {
+      if (ref.current) observer.observe(ref.current);
+    });
+
+    return () => {
+      // Cleanup observers
+      videoRefs.forEach(ref => {
+        if (ref.current) observer.unobserve(ref.current);
+      });
+    };
+  }, [
+    userPausedVideo1, userPausedVideo2, userPausedVideo3, userPausedVideo4,
+    userPausedVideo5, userPausedVideo6, userPausedVideo7, userPausedVideo8,
+    userPausedVideo9, userPausedVideo10, userPausedVideo11, userPausedVideo12
+  ]); // Re-run when any userPausedVideo changes
+
+  // Ensure videos are loaded and visible on mobile
+  useEffect(() => {
+    const videoRefs = [
+      video1Ref, video2Ref, video3Ref, video4Ref, video5Ref, video6Ref,
+      video7Ref, video8Ref, video9Ref, video10Ref, video11Ref, video12Ref
+    ];
+
+    videoRefs.forEach((ref, index) => {
+      if (ref.current) {
+        const video = ref.current;
+
+        // Force load the video
+        video.load();
+
+        // Ensure video is visible immediately
+        video.style.opacity = '1';
+        video.style.visibility = 'visible';
+
+        // Set up event listeners for mobile compatibility
+        const handleLoadedData = () => {
+          console.log(`FAQ Video ${index + 1} loaded and ready`);
+          video.style.opacity = '1';
+          video.style.visibility = 'visible';
+        };
+
+        const handleCanPlay = () => {
+          console.log(`FAQ Video ${index + 1} can play`);
+          video.style.opacity = '1';
+        };
+
+        const handleLoadedMetadata = () => {
+          console.log(`FAQ Video ${index + 1} metadata loaded`);
+          video.style.opacity = '1';
+          video.style.visibility = 'visible';
+        };
+
+        video.addEventListener('loadeddata', handleLoadedData);
+        video.addEventListener('canplay', handleCanPlay);
+        video.addEventListener('loadedmetadata', handleLoadedMetadata);
+
+        // Cleanup function for this video
+        return () => {
+          video.removeEventListener('loadeddata', handleLoadedData);
+          video.removeEventListener('canplay', handleCanPlay);
+          video.removeEventListener('loadedmetadata', handleLoadedMetadata);
+        };
+      }
+    });
+  }, []);
 
   const togglePlayPause = (videoRef, setIsPlaying, setUserPaused) => {
     if (videoRef.current) {
