@@ -193,6 +193,7 @@ const FAQSection = () => {
                 muted
                 loop
                 playsInline
+                preload="metadata"
                 className="w-full h-full object-cover rounded-xl border-[0.5px] border-[#2fbfd7] shadow-[0_0_15px_rgba(47,191,215,0.3),0_0_30px_rgba(47,191,215,0.15)]"
                 ref={video1Ref}
                 onPause={() => setUserPausedVideo1(true)}
@@ -249,6 +250,7 @@ const FAQSection = () => {
                 muted
                 loop
                 playsInline
+                preload="metadata"
                 className="w-full h-full object-cover rounded-xl border-[0.5px] border-[#2fbfd7] shadow-[0_0_15px_rgba(47,191,215,0.3),0_0_30px_rgba(47,191,215,0.15)]"
                 ref={video2Ref}
                 onPause={() => setUserPausedVideo2(true)}
@@ -305,6 +307,7 @@ const FAQSection = () => {
                 muted
                 loop
                 playsInline
+                preload="metadata"
                 className="w-full h-full object-cover rounded-xl border-[0.5px] border-[#2fbfd7] shadow-[0_0_15px_rgba(47,191,215,0.3),0_0_30px_rgba(47,191,215,0.15)]"
                 ref={video3Ref}
                 onPause={() => setUserPausedVideo3(true)}
@@ -364,6 +367,7 @@ const FAQSection = () => {
                 muted
                 loop
                 playsInline
+                preload="metadata"
                 className="w-full h-full object-cover rounded-xl border-[0.5px] border-[#2fbfd7] shadow-[0_0_15px_rgba(47,191,215,0.3),0_0_30px_rgba(47,191,215,0.15)]"
                 ref={video4Ref}
                 onPause={() => setUserPausedVideo4(true)}
@@ -420,6 +424,7 @@ const FAQSection = () => {
                 muted
                 loop
                 playsInline
+                preload="metadata"
                 className="w-full h-full object-cover rounded-xl border-[0.5px] border-[#2fbfd7] shadow-[0_0_15px_rgba(47,191,215,0.3),0_0_30px_rgba(47,191,215,0.15)]"
                 ref={video5Ref}
                 onPause={() => setUserPausedVideo5(true)}
@@ -476,6 +481,7 @@ const FAQSection = () => {
                 muted
                 loop
                 playsInline
+                preload="metadata"
                 className="w-full h-full object-cover rounded-xl border-[0.5px] border-[#2fbfd7] shadow-[0_0_15px_rgba(47,191,215,0.3),0_0_30px_rgba(47,191,215,0.15)]"
                 ref={video6Ref}
                 onPause={() => setUserPausedVideo6(true)}
@@ -535,6 +541,7 @@ const FAQSection = () => {
                 muted
                 loop
                 playsInline
+                preload="metadata"
                 className="w-full h-full object-cover rounded-xl border-[0.5px] border-[#2fbfd7] shadow-[0_0_15px_rgba(47,191,215,0.3),0_0_30px_rgba(47,191,215,0.15)]"
                 ref={video7Ref}
                 onPause={() => setUserPausedVideo7(true)}
@@ -591,6 +598,7 @@ const FAQSection = () => {
                 muted
                 loop
                 playsInline
+                preload="metadata"
                 className="w-full h-full object-cover rounded-xl border-[0.5px] border-[#2fbfd7] shadow-[0_0_15px_rgba(47,191,215,0.3),0_0_30px_rgba(47,191,215,0.15)]"
                 ref={video8Ref}
                 onPause={() => setUserPausedVideo8(true)}
@@ -647,6 +655,7 @@ const FAQSection = () => {
                 muted
                 loop
                 playsInline
+                preload="metadata"
                 className="w-full h-full object-cover rounded-xl border-[0.5px] border-[#2fbfd7] shadow-[0_0_15px_rgba(47,191,215,0.3),0_0_30px_rgba(47,191,215,0.15)]"
                 ref={video9Ref}
                 onPause={() => setUserPausedVideo9(true)}
@@ -706,6 +715,7 @@ const FAQSection = () => {
                 muted
                 loop
                 playsInline
+                preload="metadata"
                 className="w-full h-full object-cover rounded-xl border-[0.5px] border-[#2fbfd7] shadow-[0_0_15px_rgba(47,191,215,0.3),0_0_30px_rgba(47,191,215,0.15)]"
                 ref={video10Ref}
                 onPause={() => setUserPausedVideo10(true)}
@@ -762,6 +772,7 @@ const FAQSection = () => {
                 muted
                 loop
                 playsInline
+                preload="metadata"
                 className="w-full h-full object-cover rounded-xl border-[0.5px] border-[#2fbfd7] shadow-[0_0_15px_rgba(47,191,215,0.3),0_0_30px_rgba(47,191,215,0.15)]"
                 ref={video11Ref}
                 onPause={() => setUserPausedVideo11(true)}
@@ -818,6 +829,7 @@ const FAQSection = () => {
                 muted
                 loop
                 playsInline
+                preload="metadata"
                 className="w-full h-full object-cover rounded-xl border-[0.5px] border-[#2fbfd7] shadow-[0_0_15px_rgba(47,191,215,0.3),0_0_30px_rgba(47,191,215,0.15)]"
                 ref={video12Ref}
                 onPause={() => setUserPausedVideo12(true)}
