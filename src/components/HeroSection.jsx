@@ -491,9 +491,17 @@ function HeroSection() {
 
             {/* New text below video 3 */}
             <p className="text-center text-xs sm:text-lg italic text-white mt-8 flex items-center justify-center px-4">
-              <span className="block sm:inline">
-                <img src="/images/up.png" alt="Up arrow icon" className="w-4 h-4 text-white mr-1 inline sm:hidden"/>
-                All of these student's achieved crazy strength with <span className="text-[#2fbfd7]">the BG Method</span>
+              <span className="flex items-center justify-center">
+                {/* Mobile: Arrow right next to "All" */}
+                <span className="sm:hidden">
+                  <img src="/images/up.png" alt="Up arrow icon" className="w-4 h-4 text-white mr-1 inline"/>
+                  All of these student's achieved crazy strength with <span className="text-[#2fbfd7]">the BG Method</span>
+                </span>
+                {/* Desktop/Tablet: Arrow to the left with spacing */}
+                <span className="hidden sm:flex items-center">
+                  <img src="/images/up.png" alt="Up arrow icon" className="w-4 h-4 text-white mr-2"/>
+                  <span>All of these student's achieved crazy strength with <span className="text-[#2fbfd7]">the BG Method</span></span>
+                </span>
               </span>
             </p>
 

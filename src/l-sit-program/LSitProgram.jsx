@@ -76,8 +76,6 @@ function LSitProgram() {
               </p>
               <a
                 href="https://whop.com/checkout/plan_Qg84sNINhx4IG?d2c=true"
-                target="_blank"
-                rel="noopener noreferrer"
                 className="button-primary w-full"
                 style={{ textDecoration: 'none', display: 'block', cursor: 'pointer' }}
               >

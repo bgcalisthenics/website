@@ -5,8 +5,6 @@ const StickyCTA = () => (
     <span>Ready to transform? </span>
     <a
       href="https://whop.com/checkout/plan_Qg84sNINhx4IG?d2c=true"
-      target="_blank"
-      rel="noopener noreferrer"
       className="sticky-cta-btn"
       style={{ cursor: 'pointer' }}
     >

@@ -248,10 +248,10 @@
 /* Image hover effects */
 .img-hover-zoom {
   @apply overflow-hidden;
-  img {
+  :is(img) {
     @apply transition-transform duration-500;
   }
-  &:hover img {
+  &:hover :is(img) {
     @apply scale-110;
   }
 }

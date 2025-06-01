@@ -185,8 +185,6 @@ function TimelineSection() {
         <div className="flex flex-col items-center justify-center mt-12 mb-8">
           <a
             href="https://whop.com/checkout/plan_Qg84sNINhx4IG?d2c=true"
-            target="_blank"
-            rel="noopener noreferrer"
             className="button-primary relative w-[280px] h-[60px] flex items-center justify-center rounded-full shadow-2xl border-none outline-none"
             style={{
               fontWeight: 800,
