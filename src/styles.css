@@ -401,8 +401,8 @@ h1, h2, h3 {
 
   /* Video Gallery - Make all videos smaller and reduce spacing */
   .video-gallery-container .aspect-\[828\/1792\] {
-    transform: scale(0.6);
-    margin: -150px -30px;
+    transform: scale(0.8);
+    margin: -50px -20px;
   }
 }
 
@@ -450,6 +450,12 @@ h1, h2, h3 {
 
   .mobile-video-controls .h-12 {
     height: 2.5rem;
+  }
+
+  /* Extra small screens - ensure videos remain visible */
+  .video-gallery-container .aspect-\[828\/1792\] {
+    transform: scale(0.75);
+    margin: -40px -15px;
   }
 }
 
