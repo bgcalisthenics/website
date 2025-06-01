@@ -327,6 +327,31 @@ a[class*="cta"]:hover {
   cursor: pointer !important;
 }
 
+/* Ensure videos are always visible on mobile */
+video {
+  opacity: 1 !important;
+  visibility: visible !important;
+  background-color: #000 !important;
+}
+
+/* Mobile video fixes */
+@media (max-width: 768px) {
+  video {
+    opacity: 1 !important;
+    visibility: visible !important;
+    background-color: #000 !important;
+    min-height: 200px !important;
+  }
+
+  video::-webkit-media-controls {
+    display: none !important;
+  }
+
+  video::-webkit-media-controls-enclosure {
+    display: none !important;
+  }
+}
+
 /* Specific override for button-primary to maintain exact styling */
 .button-primary:hover,
 .button-primary:focus,

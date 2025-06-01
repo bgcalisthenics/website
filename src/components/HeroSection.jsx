@@ -113,33 +113,56 @@ function HeroSection() {
     };
   }, [userPausedVideo1, userPausedVideo2, userPausedVideo3]); // Re-run when any userPausedVideo changes
 
-  // Ensure videos are loaded and ready to play on mobile
+  // Ensure videos are loaded and visible on mobile
   useEffect(() => {
-    const videos = [videoRef1.current, videoRef2.current, videoRef3.current];
+    const videos = [
+      { ref: videoRef1.current, index: 1 },
+      { ref: videoRef2.current, index: 2 },
+      { ref: videoRef3.current, index: 3 }
+    ];
 
-    videos.forEach((video, index) => {
+    videos.forEach(({ ref: video, index }) => {
       if (video) {
         // Force load the video
         video.load();
 
+        // Ensure video is visible immediately
+        video.style.opacity = '1';
+        video.style.visibility = 'visible';
+
         // Set up event listeners for mobile compatibility
         const handleLoadedData = () => {
           // Video is loaded and ready to play
-          console.log(`Video ${index + 1} loaded and ready`);
+          console.log(`Video ${index} loaded and ready`);
+          video.style.opacity = '1';
+          video.style.visibility = 'visible';
         };
 
         const handleCanPlay = () => {
           // Video can start playing
-          console.log(`Video ${index + 1} can play`);
+          console.log(`Video ${index} can play`);
+          video.style.opacity = '1';
+        };
+
+        const handleLoadedMetadata = () => {
+          // Video metadata loaded - ensure it's visible
+          console.log(`Video ${index} metadata loaded`);
+          video.style.opacity = '1';
+          video.style.visibility = 'visible';
         };
 
         video.addEventListener('loadeddata', handleLoadedData);
         video.addEventListener('canplay', handleCanPlay);
+        video.addEventListener('loadedmetadata', handleLoadedMetadata);
+
+        // Force a frame to be displayed
+        video.currentTime = 0.1;
 
         // Cleanup
         return () => {
           video.removeEventListener('loadeddata', handleLoadedData);
           video.removeEventListener('canplay', handleCanPlay);
+          video.removeEventListener('loadedmetadata', handleLoadedMetadata);
         };
       }
     });
@@ -360,16 +383,24 @@ function HeroSection() {
                 muted
                 loop
                 playsInline
-                preload="metadata"
+                preload="auto"
+                poster="/videos/video1-poster.jpg"
                 className="absolute top-0 left-0 w-full h-full object-cover rounded-lg"
                 ref={videoRef1}
                 onPlay={() => handlePlay(setIsPlaying1)}
                 onPause={() => handlePause(setIsPlaying1)}
+                onLoadedData={() => {
+                  // Ensure video is visible once loaded
+                  if (videoRef1.current) {
+                    videoRef1.current.style.opacity = '1';
+                  }
+                }}
                 onTimeUpdate={(e) => {
                   const video = e.target;
                   const progress = (video.currentTime / video.duration) * 100;
                   video.parentElement.querySelector('.progress-bar').style.width = `${progress}%`;
                 }}
+                style={{ opacity: 1 }}
               >
                 <source src="/videos/video1.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
@@ -423,16 +454,24 @@ function HeroSection() {
                 muted
                 loop
                 playsInline
-                preload="metadata"
+                preload="auto"
+                poster="/videos/video2-poster.jpg"
                 className="absolute top-0 left-0 w-full h-full object-cover rounded-lg"
                 ref={videoRef2}
                 onPlay={() => handlePlay(setIsPlaying2)}
                 onPause={() => handlePause(setIsPlaying2)}
+                onLoadedData={() => {
+                  // Ensure video is visible once loaded
+                  if (videoRef2.current) {
+                    videoRef2.current.style.opacity = '1';
+                  }
+                }}
                 onTimeUpdate={(e) => {
                   const video = e.target;
                   const progress = (video.currentTime / video.duration) * 100;
                   video.parentElement.querySelector('.progress-bar').style.width = `${progress}%`;
                 }}
+                style={{ opacity: 1 }}
               >
                 <source src="/videos/video2.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
@@ -486,16 +525,24 @@ function HeroSection() {
                 muted
                 loop
                 playsInline
-                preload="metadata"
+                preload="auto"
+                poster="/videos/video3-poster.jpg"
                 className="absolute top-0 left-0 w-full h-full object-cover rounded-lg"
                 ref={videoRef3}
                 onPlay={() => handlePlay(setIsPlaying3)}
                 onPause={() => handlePause(setIsPlaying3)}
+                onLoadedData={() => {
+                  // Ensure video is visible once loaded
+                  if (videoRef3.current) {
+                    videoRef3.current.style.opacity = '1';
+                  }
+                }}
                 onTimeUpdate={(e) => {
                   const video = e.target;
                   const progress = (video.currentTime / video.duration) * 100;
                   video.parentElement.querySelector('.progress-bar').style.width = `${progress}%`;
                 }}
+                style={{ opacity: 1 }}
               >
                 <source src="/videos/video3.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
