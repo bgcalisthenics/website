@@ -140,21 +140,15 @@ function HeroSection() {
       <div className="max-w-5xl mx-auto">
         <div className="hero-radial-glow">
           {/* Main Headline */}
-          <h1 className="font-black text-center -mb-4 animate-fade-in bg-cover bg-center text-white py-4 leading-tight"
-            style={{ backgroundImage: 'url("/images/bg-headline.png")' }}
-          >
-            {/* Mobile version - maximized for full screen width */}
-            <span className="block sm:hidden leading-tight px-0 w-full text-center mx-auto" style={{fontSize: '1.75rem'}}>
-              <span className="block">Here's How You can</span>
-              <span className="block">
-                <span className="relative inline-block text-white">
-                  Achieve
-                  <span className="absolute bottom-0 left-0 w-full h-2 bg-[#2fbfd7] opacity-30 -z-10"></span>
-                </span> Your First
-              </span>
+          <h1 className="font-black text-center -mb-4 animate-fade-in text-white py-4 leading-tight">
+            {/* Mobile version - smaller text, wider distribution */}
+            <span className="block sm:hidden leading-tight px-0 w-full text-center mx-auto" style={{fontSize: '1.9rem', lineHeight: '1.15'}}>
+              <span className="block">Here's How You can <span className="relative inline-block text-white">
+                Achieve
+                <span className="absolute bottom-0 left-0 w-full h-2 bg-[#2fbfd7] opacity-30 -z-10"></span>
+              </span> Your First</span>
               <span className="block">Calisthenics Skill in Just</span>
-              <span className="block"><span className="gradient-text font-black">14 Days</span> in 2025 by</span>
-              <span className="block">Following</span>
+              <span className="block"><span className="gradient-text font-black">14 Days</span> in 2025 by Following</span>
               <span className="block">
                 <span className="gradient-text font-black bg-method">the BG Method<span className="tm">™</span></span>
               </span>
@@ -206,7 +200,7 @@ function HeroSection() {
             </svg>
           </div>
           {/* Additional context about my journey */}
-          <p className="text-center text-lg text-white -mt-4 max-w-2xl mx-auto relative group">
+          <p className="text-center text-base sm:text-lg text-white -mt-4 max-w-2xl mx-auto relative group">
             <span className="relative inline-block">
               <span className="text-[#2fbfd7] text-3xl">"</span>
               I've been doing calisthenics for 3 years, but this is my 1-year progress
@@ -262,7 +256,7 @@ function HeroSection() {
           </div>
 
           {/* Paragraph below the icon bar */}
-          <div className="mt-8 mb-6 max-w-xl mx-auto text-base sm:text-lg text-white/90 leading-relaxed space-y-4 text-left px-4 sm:px-0">
+          <div className="mt-8 mb-6 max-w-xl mx-auto text-sm sm:text-lg text-white/90 leading-relaxed space-y-4 text-left px-4 sm:px-0">
             <p className="section-transition">
               For years, I chased calisthenics skills the hard way: endless push-ups, random tutorials, and wasted time. After 3 years of consistent training, I realized that the typical "master the basics first" advice was making skill learning take a really long time — especially for skills like the planche, front lever, or muscle-up.
             </p>
@@ -313,7 +307,7 @@ function HeroSection() {
           {/* Stacked Transformation Video Placeholders */}
           <div className="max-w-2xl mx-auto space-y-8 px-4 sm:px-0">
             {/* Header for Video 1 */}
-            <h3 className="text-base sm:text-lg md:text-xl text-white/90 text-center mb-2 font-normal leading-relaxed">
+            <h3 className="text-sm sm:text-lg md:text-xl text-white/90 text-center mb-2 font-normal leading-relaxed">
               Here's one of my students performing muscle-ups and 90-degree handstand push-ups after just a few months of training.
             </h3>
             
@@ -325,11 +319,9 @@ function HeroSection() {
               onMouseLeave={() => setIsHovering1(false)}
             >
               <video
-                src="/videos/video1.mp4"
                 muted
                 loop
                 playsInline
-                mainVideo
                 className="absolute top-0 left-0 w-full h-full object-cover rounded-lg"
                 ref={videoRef1}
                 onPlay={() => handlePlay(setIsPlaying1)}
@@ -340,6 +332,7 @@ function HeroSection() {
                   video.parentElement.querySelector('.progress-bar').style.width = `${progress}%`;
                 }}
               >
+                <source src="/videos/video1.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
               
@@ -375,7 +368,7 @@ function HeroSection() {
             </div>
 
             {/* Header for Video 2 */}
-            <h3 className="text-base sm:text-lg md:text-xl text-white/90 text-center mb-2 font-normal leading-relaxed">
+            <h3 className="text-sm sm:text-lg md:text-xl text-white/90 text-center mb-2 font-normal leading-relaxed">
               Here is another student's <span className="text-white underline">6-month transformation</span> — from struggling with the tuck planche to achieving the straddle planche, performing presses, and learning handstand push-ups.
             </h3>
             
@@ -387,7 +380,6 @@ function HeroSection() {
               onMouseLeave={() => setIsHovering2(false)}
             >
               <video
-                src="/videos/video2.mp4"
                 muted
                 loop
                 playsInline
@@ -401,6 +393,7 @@ function HeroSection() {
                   video.parentElement.querySelector('.progress-bar').style.width = `${progress}%`;
                 }}
               >
+                <source src="/videos/video2.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
               
@@ -436,7 +429,7 @@ function HeroSection() {
             </div>
 
             {/* Header for Video 3 */}
-            <h3 className="text-base sm:text-lg md:text-xl text-white/90 text-center mb-2 font-normal leading-relaxed">
+            <h3 className="text-sm sm:text-lg md:text-xl text-white/90 text-center mb-2 font-normal leading-relaxed">
               Another student focused on different skills and ended up achieving the one-arm handstand, one-arm pull-up, and handstand push-ups down.
             </h3>
             
@@ -448,7 +441,6 @@ function HeroSection() {
               onMouseLeave={() => setIsHovering3(false)}
             >
               <video
-                src="/videos/video3.mp4"
                 muted
                 loop
                 playsInline
@@ -462,6 +454,7 @@ function HeroSection() {
                   video.parentElement.querySelector('.progress-bar').style.width = `${progress}%`;
                 }}
               >
+                <source src="/videos/video3.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
               
@@ -497,16 +490,16 @@ function HeroSection() {
             </div>
 
             {/* New text below video 3 */}
-            <p className="text-center text-sm sm:text-lg italic text-white mt-8 flex items-center justify-center px-4">
+            <p className="text-center text-xs sm:text-lg italic text-white mt-8 flex items-center justify-center px-4">
               <span className="block sm:inline">
                 <img src="/images/up.png" alt="Up arrow icon" className="w-4 h-4 text-white mr-1 inline sm:hidden"/>
                 All of these student's achieved crazy strength with <span className="text-[#2fbfd7]">the BG Method</span>
               </span>
             </p>
 
-            <h3 className="text-xl sm:text-2xl md:text-3xl font-black text-center mt-12 mb-6 text-white px-4 leading-tight">And you are probably wondering how these students achieved these skills so fast...</h3>
+            <h3 className="text-lg sm:text-2xl md:text-3xl font-black text-center mt-12 mb-6 text-white px-4 leading-tight">And you are probably wondering how these students achieved these skills so fast...</h3>
 
-            <div className="max-w-lg mx-auto space-y-6 text-base sm:text-lg text-gray-200 text-left px-4 sm:px-0">
+            <div className="max-w-lg mx-auto space-y-6 text-sm sm:text-lg text-gray-200 text-left px-4 sm:px-0">
               <p className="leading-relaxed">
                 It all comes down to how the BG Method is built.
               </p>

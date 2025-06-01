@@ -189,7 +189,6 @@ const FAQSection = () => {
               onMouseLeave={() => setIsHovering1(false)}
             >
               <video
-                src="/videos/front-lever.mp4"
                 muted
                 loop
                 playsInline
@@ -206,6 +205,7 @@ const FAQSection = () => {
                   if (progressBar) progressBar.style.width = `${progress}%`;
                 }}
               >
+                <source src="/videos/front-lever.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
 
@@ -890,7 +890,10 @@ const FAQSection = () => {
 
         {/* Final START NOW Button */}
         <div className="flex flex-col items-center justify-center mt-16 mb-8">
-          <button
+          <a
+            href="https://whop.com/checkout/plan_Qg84sNINhx4IG?d2c=true"
+            target="_blank"
+            rel="noopener noreferrer"
             className="button-primary relative w-[280px] h-[60px] flex items-center justify-center rounded-full shadow-2xl border-none outline-none"
             style={{
               fontWeight: 800,
@@ -902,11 +905,12 @@ const FAQSection = () => {
               WebkitBackdropFilter: 'blur(8px)',
               backdropFilter: 'blur(8px)',
               transition: 'none',
-              transform: 'none'
+              transform: 'none',
+              textDecoration: 'none'
             }}
           >
             <span className="font-black w-full text-center">START NOW</span>
-          </button>
+          </a>
         </div>
       </div>
     </section>

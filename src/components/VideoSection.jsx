@@ -179,9 +179,9 @@ function VideoSection() {
   };
 
   return (
-    <div className="flex justify-center items-center my-16 px-4">
-      <div className="relative w-full max-w-4xl mx-auto">
-        <div className="relative aspect-video rounded-2xl overflow-hidden border-[3px] border-[#2fbfd7] shadow-[0_0_30px_rgba(47,191,215,0.5),0_0_60px_rgba(47,191,215,0.3)]">
+    <div className="flex justify-center items-center my-8 sm:my-16 px-2 sm:px-4">
+      <div className="relative w-full max-w-5xl sm:max-w-4xl mx-auto">
+        <div className="relative aspect-video rounded-xl sm:rounded-2xl overflow-hidden border-[3px] border-[#2fbfd7] shadow-[0_0_30px_rgba(47,191,215,0.5),0_0_60px_rgba(47,191,215,0.3)]">
           <div className="relative aspect-video cursor-pointer" onClick={handleVideoClick}>
             <video
               ref={videoRef}
@@ -261,26 +261,8 @@ function VideoSection() {
                   onChange={handleVolumeChange}
                   className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-24 h-24 appearance-none bg-transparent cursor-pointer"
                   style={{
-                    writingMode: 'bt-lr',
-                    WebkitAppearance: 'slider-vertical',
-                    '&::-webkit-slider-thumb': {
-                      WebkitAppearance: 'none',
-                      appearance: 'none',
-                      width: '16px',
-                      height: '16px',
-                      background: '#2fbfd7',
-                      borderRadius: '50%',
-                      cursor: 'pointer',
-                      marginTop: '-6px'
-                    },
-                    '&::-moz-range-thumb': {
-                      width: '16px',
-                      height: '16px',
-                      background: '#2fbfd7',
-                      borderRadius: '50%',
-                      cursor: 'pointer',
-                      border: 'none'
-                    }
+                    writingMode: 'vertical-lr',
+                    direction: 'rtl'
                   }}
                 />
               </div>
@@ -313,8 +295,8 @@ function VideoSection() {
               />
             </div>
 
-            {/* Text Overlay */}
-            <div className={`absolute bottom-0 left-0 right-0 p-4 sm:p-6 bg-gradient-to-t from-black/80 to-transparent ${isPlaying || hasStarted ? 'hidden' : ''}`}>
+            {/* Text Overlay - Hidden on mobile */}
+            <div className={`absolute bottom-0 left-0 right-0 p-4 sm:p-6 bg-gradient-to-t from-black/80 to-transparent hidden sm:block ${isPlaying || hasStarted ? 'hidden' : ''}`}>
               <div className="text-center">
                 <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-1">
                   <span className="text-white">MY INSANE TRANSFORMATION</span>
