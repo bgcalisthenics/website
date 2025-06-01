@@ -84,9 +84,15 @@ function ProgramSection() {
               
               <div className="text-center">
                 <div className="text-4xl font-bold text-white mb-4">{program.price}</div>
-                <button className={`button-primary w-full py-3 px-6 rounded-lg font-bold transition-all duration-300`}>
+                <a
+                  href="https://whop.com/checkout/plan_Qg84sNINhx4IG?d2c=true"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`button-primary w-full py-3 px-6 rounded-lg font-bold transition-all duration-300`}
+                  style={{ textDecoration: 'none' }}
+                >
                   Get Started
-                </button>
+                </a>
               </div>
             </div>
           ))}

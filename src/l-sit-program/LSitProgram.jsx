@@ -74,9 +74,15 @@ function LSitProgram() {
               <p className="text-gray-300 mb-6">
                 Join thousands of students who have mastered the L-sit with our proven program.
               </p>
-              <button className="button-primary w-full">
+              <a
+                href="https://whop.com/checkout/plan_Qg84sNINhx4IG?d2c=true"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="button-primary w-full"
+                style={{ textDecoration: 'none' }}
+              >
                 Start Your L-Sit Journey
-              </button>
+              </a>
             </div>
           </div>
         </div>
