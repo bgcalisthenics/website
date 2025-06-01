@@ -19,6 +19,11 @@ function HeroSection() {
   const [isHovering2, setIsHovering2] = useState(false);
   const [isHovering3, setIsHovering3] = useState(false);
 
+  // Track if user manually paused videos
+  const [userPausedVideo1, setUserPausedVideo1] = useState(false);
+  const [userPausedVideo2, setUserPausedVideo2] = useState(false);
+  const [userPausedVideo3, setUserPausedVideo3] = useState(false);
+
   const [ref, inView] = useInView({ threshold: 0.5 });
   const [studentsRef, studentsInView] = useInView({ threshold: 0.5 });
 
@@ -48,14 +53,77 @@ function HeroSection() {
     };
   }, [hasAnimated]);
 
+  // Auto-play videos when they come into view and pause when they leave
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const videoElement = entry.target;
+          if (entry.isIntersecting) {
+            // Video is in view - auto-play it only if user hasn't manually paused it
+            if (videoElement && videoElement.paused) {
+              let shouldPlay = false;
+              if (videoElement === videoRef1.current && !userPausedVideo1) shouldPlay = true;
+              if (videoElement === videoRef2.current && !userPausedVideo2) shouldPlay = true;
+              if (videoElement === videoRef3.current && !userPausedVideo3) shouldPlay = true;
+
+              if (shouldPlay) {
+                videoElement.play().then(() => {
+                  // Update the corresponding playing state
+                  if (videoElement === videoRef1.current) setIsPlaying1(true);
+                  if (videoElement === videoRef2.current) setIsPlaying2(true);
+                  if (videoElement === videoRef3.current) setIsPlaying3(true);
+                }).catch((error) => {
+                  console.log("Auto-play failed:", error);
+                });
+              }
+            }
+          } else {
+            // Video is out of view - pause it (but don't set userPausedVideo flag)
+            if (videoElement && !videoElement.paused) {
+              videoElement.pause();
+              // Update the corresponding playing state
+              if (videoElement === videoRef1.current) setIsPlaying1(false);
+              if (videoElement === videoRef2.current) setIsPlaying2(false);
+              if (videoElement === videoRef3.current) setIsPlaying3(false);
+            }
+          }
+        });
+      },
+      {
+        threshold: 0.3, // Trigger when 30% of the video is visible
+      }
+    );
+
+    // Observe all video elements
+    if (videoRef1.current) observer.observe(videoRef1.current);
+    if (videoRef2.current) observer.observe(videoRef2.current);
+    if (videoRef3.current) observer.observe(videoRef3.current);
+
+    return () => {
+      // Cleanup observers
+      if (videoRef1.current) observer.unobserve(videoRef1.current);
+      if (videoRef2.current) observer.unobserve(videoRef2.current);
+      if (videoRef3.current) observer.unobserve(videoRef3.current);
+    };
+  }, [userPausedVideo1, userPausedVideo2, userPausedVideo3]); // Re-run when any userPausedVideo changes
+
   const togglePlayPause = (videoRef, setIsPlaying) => {
     if (videoRef.current) {
       if (videoRef.current.paused) {
         videoRef.current.play();
         setIsPlaying(true);
+        // Reset user pause flag when user manually plays
+        if (videoRef === videoRef1) setUserPausedVideo1(false);
+        if (videoRef === videoRef2) setUserPausedVideo2(false);
+        if (videoRef === videoRef3) setUserPausedVideo3(false);
       } else {
         videoRef.current.pause();
         setIsPlaying(false);
+        // Set user pause flag when user manually pauses
+        if (videoRef === videoRef1) setUserPausedVideo1(true);
+        if (videoRef === videoRef2) setUserPausedVideo2(true);
+        if (videoRef === videoRef3) setUserPausedVideo3(true);
       }
     }
   };
@@ -68,24 +136,45 @@ function HeroSection() {
   };
 
   return (
-    <div className="min-h-screen bg-[#10142c] py-20 px-4">
+    <div className="min-h-screen bg-[#10142c] pt-20 pb-8 px-4">
       <div className="max-w-5xl mx-auto">
         <div className="hero-radial-glow">
           {/* Main Headline */}
-          <h1 className="text-4xl md:text-6xl font-black text-center mb-6 animate-fade-in bg-cover bg-center text-white py-4"
+          <h1 className="font-black text-center mb-6 animate-fade-in bg-cover bg-center text-white py-4 leading-tight"
             style={{ backgroundImage: 'url("/images/bg-headline.png")' }}
           >
-            Here's How You can{' '}
-            <span className="relative inline-block text-white">
-              Achieve
-              <span className="absolute bottom-0 left-0 w-full h-3 bg-[#2fbfd7] opacity-30 -z-10"></span>
-            </span> Your First{' '}
-            <span className="text-white">Calisthenics Skill</span>{' '}
-            in Just
-            <br />
-            <span className="gradient-text font-black">14 Days</span> in 2025 by Following
-            <br />
-            <span className="gradient-text font-black bg-method">the BG Method<span className="tm">™</span></span>
+            {/* Mobile version - clean and simple */}
+            <span className="block sm:hidden text-xl leading-tight">
+              <span className="block">Here's How You can</span>
+              <span className="block">
+                <span className="relative inline-block text-white">
+                  Achieve Your First
+                  <span className="absolute bottom-0 left-0 w-full h-2 bg-[#2fbfd7] opacity-30 -z-10"></span>
+                </span>
+              </span>
+              <span className="block">Calisthenics Skill in Just</span>
+              <span className="block">
+                <span className="gradient-text font-black">14 Days in 2025</span> by Following
+              </span>
+              <span className="block">
+                <span className="gradient-text font-black bg-method">the BG Method<span className="tm">™</span></span>
+              </span>
+            </span>
+
+            {/* Desktop version */}
+            <span className="hidden sm:block text-4xl md:text-6xl">
+              Here's How You can{' '}
+              <span className="relative inline-block text-white">
+                Achieve
+                <span className="absolute bottom-0 left-0 w-full h-3 bg-[#2fbfd7] opacity-30 -z-10"></span>
+              </span> Your First{' '}
+              <span className="text-white">Calisthenics Skill</span>{' '}
+              in Just
+              <br />
+              <span className="gradient-text font-black">14 Days</span> in 2025 by Following
+              <br />
+              <span className="gradient-text font-black bg-method">the BG Method<span className="tm">™</span></span>
+            </span>
           </h1>
         </div>
 
@@ -134,12 +223,12 @@ function HeroSection() {
           <h2 className="text-3xl md:text-4xl font-black mb-8 gradient-text">Hi, I'm Ben</h2>
 
           {/* Profile Image */}
-          <div className="mx-auto w-full max-w-xl aspect-video rounded-xl mb-8 overflow-hidden">
+          <div className="mx-auto w-full max-w-xs sm:max-w-xl aspect-video rounded-xl mb-8 overflow-hidden">
             <img src="/images/ben.jpg" alt="Ben's profile" className="w-full h-full object-cover" />
           </div>
 
           {/* Rounded bar containing the profile picture and social media icons */}
-          <div className="-mt-16 w-full max-w-sm sm:max-w-2xl mx-auto rounded-full py-1 sm:py-3 px-2 sm:px-4 shadow-lg flex flex-row items-center justify-center space-x-2 sm:space-x-4 overflow-x-hidden whitespace-nowrap z-50 relative glass-card">
+          <div className="-mt-12 sm:-mt-16 w-full max-w-xs sm:max-w-2xl mx-auto rounded-full py-2 sm:py-3 px-2 sm:px-4 shadow-lg flex flex-row items-center justify-center space-x-1 sm:space-x-4 overflow-x-hidden whitespace-nowrap z-50 relative glass-card">
             {/* Profile Picture inside the bar */}
             <div className="w-9 h-9 sm:w-16 sm:h-16 rounded-full flex-shrink-0 overflow-hidden img-hover-zoom">
               <img src="/images/png.jpg" alt="Ben's Profile Picture" className="w-full h-full object-cover" />
@@ -174,7 +263,7 @@ function HeroSection() {
           </div>
 
           {/* Paragraph below the icon bar */}
-          <div className="mt-8 mb-6 max-w-xl mx-auto text-lg text-white/90 leading-relaxed space-y-4 text-left">
+          <div className="mt-8 mb-6 max-w-xl mx-auto text-base sm:text-lg text-white/90 leading-relaxed space-y-4 text-left px-4 sm:px-0">
             <p className="section-transition">
               For years, I chased calisthenics skills the hard way: endless push-ups, random tutorials, and wasted time. After 3 years of consistent training, I realized that the typical "master the basics first" advice was making skill learning take a really long time — especially for skills like the planche, front lever, or muscle-up.
             </p>
@@ -223,9 +312,9 @@ function HeroSection() {
           </h2>
           
           {/* Stacked Transformation Video Placeholders */}
-          <div className="max-w-2xl mx-auto space-y-8">
+          <div className="max-w-2xl mx-auto space-y-8 px-4 sm:px-0">
             {/* Header for Video 1 */}
-            <h3 className="text-lg md:text-xl text-white/90 text-center mb-2 font-normal">
+            <h3 className="text-base sm:text-lg md:text-xl text-white/90 text-center mb-2 font-normal leading-relaxed">
               Here's one of my students performing muscle-ups and 90-degree handstand push-ups after just a few months of training.
             </h3>
             
@@ -262,7 +351,7 @@ function HeroSection() {
 
               {/* Blue Play Button (only visible when paused) */}
               {!isPlaying1 && (
-                <div className="w-12 h-12 md:w-16 md:h-16 bg-[#2fbfd7] rounded-full flex items-center justify-center opacity-80 hover:bg-[#23a6bb] transition-colors absolute z-10">
+                <div className="w-12 h-12 md:w-16 md:h-16 bg-[#2fbfd7] rounded-full flex items-center justify-center opacity-80 absolute z-10">
                   {/* Play Icon */}
                   <svg className="w-6 h-6 md:w-8 md:h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M8 5v14l11-7z"/>
@@ -287,7 +376,7 @@ function HeroSection() {
             </div>
 
             {/* Header for Video 2 */}
-            <h3 className="text-lg md:text-xl text-white/90 text-center mb-2 font-normal">
+            <h3 className="text-base sm:text-lg md:text-xl text-white/90 text-center mb-2 font-normal leading-relaxed">
               Here is another student's <span className="text-white underline">6-month transformation</span> — from struggling with the tuck planche to achieving the straddle planche, performing presses, and learning handstand push-ups.
             </h3>
             
@@ -323,7 +412,7 @@ function HeroSection() {
 
               {/* Blue Play Button (only visible when paused) */}
               {!isPlaying2 && (
-                <div className="w-12 h-12 md:w-16 md:h-16 bg-[#2fbfd7] rounded-full flex items-center justify-center opacity-80 hover:bg-[#23a6bb] transition-colors absolute z-10">
+                <div className="w-12 h-12 md:w-16 md:h-16 bg-[#2fbfd7] rounded-full flex items-center justify-center opacity-80 absolute z-10">
                   {/* Play Icon */}
                   <svg className="w-6 h-6 md:w-8 md:h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M8 5v14l11-7z"/>
@@ -333,7 +422,7 @@ function HeroSection() {
 
               {/* Small White Play/Pause Button (visible only on hover) */}
               {isHovering2 && (
-                <div className="absolute bottom-4 left-4 z-10 w-8 h-8 bg-[#2fbfd7] rounded-full flex items-center justify-center cursor-pointer hover:bg-[#23a6bb] transition-colors">
+                <div className="absolute bottom-4 left-4 z-10 w-8 h-8 bg-[#2fbfd7] rounded-full flex items-center justify-center cursor-pointer" style={{transition: 'none', transform: 'none'}}>
                   {isPlaying2 ? (
                     <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
@@ -348,7 +437,7 @@ function HeroSection() {
             </div>
 
             {/* Header for Video 3 */}
-            <h3 className="text-lg md:text-xl text-white/90 text-center mb-2 font-normal">
+            <h3 className="text-base sm:text-lg md:text-xl text-white/90 text-center mb-2 font-normal leading-relaxed">
               Another student focused on different skills and ended up achieving the one-arm handstand, one-arm pull-up, and handstand push-ups down.
             </h3>
             
@@ -384,7 +473,7 @@ function HeroSection() {
 
               {/* Blue Play Button (only visible when paused) */}
               {!isPlaying3 && (
-                <div className="w-12 h-12 md:w-16 md:h-16 bg-[#2fbfd7] rounded-full flex items-center justify-center opacity-80 hover:bg-[#23a6bb] transition-colors absolute z-10">
+                <div className="w-12 h-12 md:w-16 md:h-16 bg-[#2fbfd7] rounded-full flex items-center justify-center opacity-80 absolute z-10">
                   {/* Play Icon */}
                   <svg className="w-6 h-6 md:w-8 md:h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M8 5v14l11-7z"/>
@@ -409,14 +498,14 @@ function HeroSection() {
             </div>
 
             {/* New text below video 3 */}
-            <p className="text-center text-lg italic text-white mt-8 flex items-center justify-center">
-              <img src="/images/up.png" alt="Up arrow icon" className="w-5 h-5 text-white mr-2"/>
+            <p className="text-center text-base sm:text-lg italic text-white mt-8 flex items-center justify-center px-4">
+              <img src="/images/up.png" alt="Up arrow icon" className="w-4 h-4 sm:w-5 sm:h-5 text-white mr-2"/>
               All of these student's achieved crazy strength with ‎  <span className="text-[#2fbfd7]">the BG Method</span>
             </p>
 
-            <h3 className="text-2xl md:text-3xl font-black text-center mt-12 mb-6 text-white">And you are probably wondering how these students achieved these skills so fast...</h3>
+            <h3 className="text-xl sm:text-2xl md:text-3xl font-black text-center mt-12 mb-6 text-white px-4 leading-tight">And you are probably wondering how these students achieved these skills so fast...</h3>
 
-            <div className="max-w-lg mx-auto space-y-8 text-lg text-gray-200 text-left">
+            <div className="max-w-lg mx-auto space-y-6 text-base sm:text-lg text-gray-200 text-left px-4 sm:px-0">
               <p className="leading-relaxed">
                 It all comes down to how the BG Method is built.
               </p>
@@ -426,10 +515,10 @@ function HeroSection() {
               <p className="leading-relaxed">
                 The structure of the BG Method helps your body adapt more quickly to high-level moves like the planche and 90-degree handstand push-up—so you're not just training hard, you're training smart.
               </p>
-              <p className="leading-relaxed">
+              <p className="leading-relaxed mb-0">
                 As you progress, the program shifts into an intermediate-to-advanced phase, where you'll start learning more complex skills and how to integrate them into your workouts. And if you don't want to build your own routines, you'll get PDFs for each skill, with pre-built workouts ready to go.
               </p>
-              <p className="leading-relaxed">
+              <p className="leading-relaxed -mt-2">
                 This method is how I learned skills so fast, and why so many others inside the program are doing the same.
               </p>
             </div>

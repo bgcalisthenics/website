@@ -3,7 +3,7 @@
 ## 1. Project Breakdown
 
 **App Name:** Calisthenics Mastery Pro  
-**Platform:** Web  
+**Platform:** Web
 **Summary:** A conversion-focused one-page website selling two digital calisthenics programs (free L-sit program and paid Beginner to Advanced program). The site combines compelling copy with a guided user flow to maximize conversions while maintaining premium aesthetics. The goal is to create a high-converting sales funnel with minimal friction.  
 
 **Primary Use Case:**  

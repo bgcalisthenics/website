@@ -119,11 +119,8 @@ function TimelineSection() {
   ];
 
   return (
-    <div className="bg-[#10142c] px-4">
+    <div className="bg-[#10142c] px-4 pt-4">
       <div className="max-w-4xl mx-auto">
-        <div className="mb-8 text-gray-300 max-w-lg mx-auto">
-        </div>
-
         <h2 className="text-3xl md:text-4xl font-black text-center mb-8">
           Here's how your <span className="relative inline-block text-[#2fbfd7]">
             8-week journey
@@ -172,7 +169,7 @@ function TimelineSection() {
                 
                 {/* Image */}
                 <div className="w-full md:w-1/2 flex justify-center">
-                  <div className={`w-[280px] ${index === 2 ? 'w-[450px] -ml-16' : ''} rounded-xl overflow-hidden ${index === 2 ? '' : 'shadow-[0_0_15px_rgba(47,191,215,0.3)]'}`}>
+                  <div className={`w-[280px] ${index === 2 ? 'md:w-[450px] md:-ml-16' : ''} rounded-xl overflow-hidden ${index === 2 ? '' : 'shadow-[0_0_15px_rgba(47,191,215,0.3)]'}`}>
                     <img
                       src={item.image}
                       alt={item.title}
@@ -187,7 +184,7 @@ function TimelineSection() {
         {/* START NOW Button - Improved CTA */}
         <div className="flex flex-col items-center justify-center mt-12 mb-8">
           <button
-            className="button-primary relative w-[280px] h-[60px] flex items-center justify-center rounded-full shadow-2xl hover:scale-105 transition-all duration-200 border-none outline-none focus:ring-4 focus:ring-[#2fbfd7]/40"
+            className="button-primary relative w-[280px] h-[60px] flex items-center justify-center rounded-full shadow-2xl border-none outline-none"
             style={{
               fontWeight: 800,
               fontSize: '1.3rem',
@@ -196,7 +193,9 @@ function TimelineSection() {
               border: 'none',
               outline: 'none',
               WebkitBackdropFilter: 'blur(8px)',
-              backdropFilter: 'blur(8px)'
+              backdropFilter: 'blur(8px)',
+              transition: 'none',
+              transform: 'none'
             }}
           >
             <span className="font-black w-full text-center">JOIN NOW</span>
@@ -225,11 +224,11 @@ function TimelineSection() {
             </span>{' '}
             to help you with the journey
           </h2>
-          <div className="py-4">
+          <div className="py-4 px-4 sm:px-0">
             <img
               src="/images/vids.png"
               alt="What you will get"
-              className="w-full max-w-[900px] rounded-2xl"
+              className="w-full max-w-[900px] rounded-2xl mx-auto"
               loading="eager"
               decoding="async"
             />
@@ -255,13 +254,15 @@ function TimelineSection() {
             </ul>
           </div>
           {/* img.png after the text */}
-          <img
-            src="/images/img.png"
-            alt="Additional visual"
-            className="w-full max-w-[900px] rounded-2xl"
-            loading="eager"
-            decoding="async"
-          />
+          <div className="px-4 sm:px-0">
+            <img
+              src="/images/img.png"
+              alt="Additional visual"
+              className="w-full max-w-[900px] rounded-2xl mx-auto"
+              loading="eager"
+              decoding="async"
+            />
+          </div>
           {/* Additional bullet points under img.png */}
           <ul className="space-y-4 text-left mt-6 max-w-md">
             <li className="flex items-start">
@@ -274,13 +275,15 @@ function TimelineSection() {
             </li>
           </ul>
           {/* bng.png after hj.png */}
-          <img
-            src="/images/bng.png"
-            alt="bng visual"
-            className="w-full max-w-[900px] rounded-2xl mt-6"
-            loading="eager"
-            decoding="async"
-          />
+          <div className="px-4 sm:px-0 mt-6">
+            <img
+              src="/images/bng.png"
+              alt="bng visual"
+              className="w-full max-w-[900px] rounded-2xl mx-auto"
+              loading="eager"
+              decoding="async"
+            />
+          </div>
           {/* Bullet points under bng.png */}
           <ul className="space-y-4 text-left mt-6 max-w-md">
             <li className="flex items-start">
@@ -304,34 +307,9 @@ function TimelineSection() {
               <span className="text-gray-200 text-lg">..And you can also ask any questions with people who have similar mindsets to you.</span>
             </li>
           </ul>
-          {/* Get Access Button */}
-          <div className="flex flex-col items-center justify-center mt-12 mb-8">
-            <button
-              className="button-primary relative w-[280px] h-[60px] flex items-center justify-center rounded-full shadow-2xl hover:scale-105 transition-all duration-200 border-none outline-none focus:ring-4 focus:ring-[#2fbfd7]/40"
-              style={{
-                fontWeight: 800,
-                fontSize: '1.3rem',
-                letterSpacing: '0.02em',
-                textShadow: '0 2px 8px #000a',
-                border: 'none',
-                outline: 'none',
-                WebkitBackdropFilter: 'blur(8px)',
-                backdropFilter: 'blur(8px)'
-              }}
-            >
-              <span className="font-black w-full text-center">GET ACCESS</span>
-            </button>
-            <div className="flex items-center mt-4">
-              {/* Avatars */}
-              <div className="flex items-center">
-                <img src="/images/people.png" alt="People who joined" className="w-24 h-auto object-contain" />
-              </div>
-              {/* Text */}
-              <span className="ml-4 text-white/90 font-medium text-base tracking-wide" style={{ textShadow: '0 2px 8px #000a' }}>
-                5k+ people have already joined
-              </span>
-            </div>
-          </div>
+
+
+
           <div className="mt-10"></div>
         </div>
       </div>

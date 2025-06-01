@@ -1,6 +1,55 @@
-import React from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 
 function SkillsShowcase() {
+  const video1Ref = useRef(null);
+  const video2Ref = useRef(null);
+
+  // Track if user manually paused videos
+  const [userPausedVideo1, setUserPausedVideo1] = useState(false);
+  const [userPausedVideo2, setUserPausedVideo2] = useState(false);
+
+  // Auto-play videos when they come into view and pause when they leave
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const videoElement = entry.target;
+          if (entry.isIntersecting) {
+            // Video is in view - auto-play it only if user hasn't manually paused it
+            if (videoElement && videoElement.paused) {
+              let shouldPlay = false;
+              if (videoElement === video1Ref.current && !userPausedVideo1) shouldPlay = true;
+              if (videoElement === video2Ref.current && !userPausedVideo2) shouldPlay = true;
+
+              if (shouldPlay) {
+                videoElement.play().catch((error) => {
+                  console.log("Auto-play failed:", error);
+                });
+              }
+            }
+          } else {
+            // Video is out of view - pause it (but don't set userPausedVideo flag)
+            if (videoElement && !videoElement.paused) {
+              videoElement.pause();
+            }
+          }
+        });
+      },
+      {
+        threshold: 0.3, // Trigger when 30% of the video is visible
+      }
+    );
+
+    // Observe all video elements
+    if (video1Ref.current) observer.observe(video1Ref.current);
+    if (video2Ref.current) observer.observe(video2Ref.current);
+
+    return () => {
+      // Cleanup observers
+      if (video1Ref.current) observer.unobserve(video1Ref.current);
+      if (video2Ref.current) observer.unobserve(video2Ref.current);
+    };
+  }, [userPausedVideo1, userPausedVideo2]); // Re-run when userPausedVideo changes
   return (
     <div className="bg-[#10142c] py-20 px-4">
       <div className="max-w-5xl mx-auto">
@@ -16,15 +65,21 @@ function SkillsShowcase() {
           
           <div className="aspect-w-16 aspect-h-9">
             <div className="relative">
-              <video 
+              <video
+                ref={video1Ref}
                 className="w-full rounded-2xl border-[3px] border-[#2fbfd7] shadow-[0_0_15px_rgba(47,191,215,0.3),0_0_30px_rgba(47,191,215,0.15)]"
                 controls
+                muted
+                loop
+                playsInline
                 poster="/weighted-skills-thumbnail.jpg"
                 onTimeUpdate={(e) => {
                   const video = e.target;
                   const progress = (video.currentTime / video.duration) * 100;
                   video.parentElement.querySelector('.progress-bar').style.width = `${progress}%`;
                 }}
+                onPause={() => setUserPausedVideo1(true)}
+                onPlay={() => setUserPausedVideo1(false)}
               >
                 <source src="/weighted-skills.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
@@ -53,15 +108,21 @@ function SkillsShowcase() {
 
           <div className="aspect-w-16 aspect-h-9">
             <div className="relative">
-              <video 
+              <video
+                ref={video2Ref}
                 className="w-full rounded-2xl border-[3px] border-[#2fbfd7] shadow-[0_0_15px_rgba(47,191,215,0.3),0_0_30px_rgba(47,191,215,0.15)]"
                 controls
+                muted
+                loop
+                playsInline
                 poster="/defying-gravity-thumbnail.jpg"
                 onTimeUpdate={(e) => {
                   const video = e.target;
                   const progress = (video.currentTime / video.duration) * 100;
                   video.parentElement.querySelector('.progress-bar').style.width = `${progress}%`;
                 }}
+                onPause={() => setUserPausedVideo2(true)}
+                onPlay={() => setUserPausedVideo2(false)}
               >
                 <source src="/defying-gravity.mp4" type="video/mp4" />
                 Your browser does not support the video tag.

@@ -64,9 +64,9 @@
   }
 
   .button-primary {
-    @apply px-8 py-4 bg-gradient-to-r from-primary-blue to-secondary-blue text-white font-bold rounded-lg shadow-lg shadow-primary-blue/20;
-    background: linear-gradient(90deg, #0e2328 0%, #2fd7f6 100%);
-    color: #fff;
+    @apply px-8 py-4 text-white font-bold rounded-lg shadow-lg shadow-primary-blue/20;
+    background: linear-gradient(90deg, #2fbfd7 0%, #23a6bb 100%) !important;
+    color: #fff !important;
     font-weight: 900;
     border-radius: 2.5rem;
     font-size: 1.1rem;
@@ -78,12 +78,19 @@
   }
 
   .button-primary:hover {
+    background: linear-gradient(90deg, #2fbfd7 0%, #23a6bb 100%) !important;
+    color: #fff !important;
+    box-shadow: 0 4px 16px #2fbfd7aa !important;
     transform: none !important;
-    background: linear-gradient(90deg, #0e2328 0%, #2fd7f6 100%);
+    transition: none !important;
+    scale: 1 !important;
+    filter: none !important;
+    opacity: 1 !important;
+    cursor: pointer !important;
   }
 
   .button-secondary {
-    @apply px-8 py-4 bg-black text-white font-bold rounded-lg border border-dark-border hover:bg-dark-border transition-all duration-300 transform hover:scale-105;
+    @apply px-8 py-4 bg-black text-white font-bold rounded-lg border border-dark-border;
   }
 
   .cta-button, .program-btn, .sticky-cta-btn {
@@ -94,12 +101,17 @@
     font-size: 1.3rem;
     padding: 1.1rem 0;
     box-shadow: 0 4px 16px #2fbfd7aa;
-    transition: background 0.2s, transform 0.15s;
+    transition: none !important;
+    transform: none !important;
   }
 
   .cta-button:hover, .program-btn:hover, .sticky-cta-btn:hover {
-    background: linear-gradient(90deg, var(--primary-blue-dark) 0%, var(--primary-blue) 100%);
-    transform: scale(1.04);
+    background: linear-gradient(90deg, var(--primary-blue) 0%, var(--primary-blue-dark) 100%) !important;
+    transform: none !important;
+    transition: none !important;
+    filter: none !important;
+    opacity: 1 !important;
+    scale: 1 !important;
   }
 
   .bold-blue {
@@ -242,4 +254,38 @@
   to {
     stroke-dashoffset: 0;
   }
-} 
+}
+
+/* Global button hover override - ensure no hover effects */
+button:hover,
+.button-primary:hover,
+.button-secondary:hover,
+.cta-button:hover,
+.program-btn:hover,
+.sticky-cta-btn:hover,
+.enhanced-button:hover,
+.hero-floating-cta:hover,
+[class*="button"]:hover,
+[class*="btn"]:hover,
+[class*="cta"]:hover {
+  transform: none !important;
+  scale: 1 !important;
+  transition: none !important;
+  animation: none !important;
+  filter: none !important;
+  opacity: 1 !important;
+}
+
+/* Specific override for button-primary to maintain exact styling */
+.button-primary:hover,
+.button-primary:focus,
+.button-primary:active {
+  background: linear-gradient(90deg, #2fbfd7 0%, #23a6bb 100%) !important;
+  color: #fff !important;
+  box-shadow: 0 4px 16px #2fbfd7aa !important;
+  transform: none !important;
+  transition: none !important;
+  scale: 1 !important;
+  filter: none !important;
+  opacity: 1 !important;
+}

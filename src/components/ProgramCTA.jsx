@@ -52,47 +52,52 @@ function ProgramCTA() {
           </ul>
         </div>
 
-        {/* Get Access Button */}
-        <div className="flex flex-col items-center justify-center mb-12">
-          <button
-            className="button-primary relative w-[280px] h-[60px] flex items-center justify-center rounded-full shadow-2xl hover:scale-105 transition-all duration-200 border-none outline-none focus:ring-4 focus:ring-[#2fbfd7]/40"
-            style={{
-              fontWeight: 800,
-              fontSize: '1.3rem',
-              letterSpacing: '0.02em',
-              textShadow: '0 2px 8px #000a',
-              border: 'none',
-              outline: 'none',
-              WebkitBackdropFilter: 'blur(8px)',
-              backdropFilter: 'blur(8px)'
-            }}
-          >
-            <span className="font-black w-full text-center">GET ACCESS</span>
-          </button>
-        </div>
 
-        {/* Main Content */}
-        <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-black mb-6">
-            Start Your <span className="text-[#2fbfd7]">Calisthenics Journey</span> Today
-          </h2>
-          <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-            Join thousands of students who have transformed their strength and skills with the BG Method
-          </p>
-        </div>
 
         {/* Price & Refund Policy Section */}
-        <div className="max-w-2xl mx-auto mb-8">
-          <h2 className="text-3xl md:text-4xl font-black mb-6 text-center">Now, let's talk about price.</h2>
-          <p className="mb-4">Many ask if I offer refunds.</p>
-          <p className="mb-4">That's a fair thing to wonder.<br/>So let me ask you this:</p>
-          <p className="mb-4">Have you ever bought a journal, wrote one page, and then left it on your shelf?</p>
-          <p className="mb-4">Most people have.<br/>But it wasn't because the journal didn't work — it was because they didn't use it long enough to feel the change.</p>
-          <p className="mb-4">This program? It's kind of like that.</p>
-          <p className="mb-4">You're not just buying information — you're stepping into something that only works if you work it.</p>
-          <p className="mb-4">It's a full roadmap. Built with experience, tested by thousands, and laid out to remove all the guesswork. But just like a journal won't rewrite your story for you, this plan won't build your body unless you show up for it.</p>
-          <p className="mb-4">So no, we don't do refunds — not because we're trying to be tough — but because transformation doesn't come with a receipt. It comes with commitment.</p>
-          <p className="mb-4">And if that's something you're ready for —<br/>I'll be right there with you inside the community.<br/>Let's get to it.</p>
+        <div className="mt-16 flex flex-col items-center justify-center text-center">
+          <h2 className="text-3xl md:text-4xl font-black mb-6 relative">
+            "Is There A{' '}
+            <span className="relative inline-block text-white">
+              Money-Back-Guarantee
+              <span className="absolute bottom-0 left-0 w-full h-3 bg-[#2fbfd7] opacity-30 -z-10"></span>
+            </span>?"
+          </h2>
+          <div className="max-w-lg mx-auto mb-8 text-left">
+            <p className="mb-4 text-gray-200 text-lg">Many people ask if there are refunds.</p>
+            <p className="mb-4 text-gray-200 text-lg">So let me ask you this: Have you ever bought a journal, written one page, and then left it on your shelf?</p>
+            <p className="mb-4 text-gray-200 text-lg">Most people have. But it's not because the journal didn't work, rather because they didn't use it long enough to see the change.</p>
+            <p className="mb-4 text-gray-200 text-lg">The BG Method is just like that.</p>
+            <p className="mb-4 text-gray-200 text-lg">You're not just buying random information, you're investing in something that only works if you put in the work.</p>
+            <p className="mb-4 text-gray-200 text-lg">Everything is laid out in a clear roadmap, built on experience, tested by thousands, and designed to remove all the guesswork.</p>
+            <p className="mb-4 text-gray-200 text-lg">But just like a journal won't rewrite your story for you, this plan won't help you achieve skills unless you show up for it.</p>
+            <p className="mb-4 text-gray-200 text-lg">So no, there are no refunds — not because I want to be tough — but because transformation doesn't come with a receipt. It comes with your commitment.</p>
+            <p className="mb-4 text-gray-200 text-lg">If that's something you're ready for, the BG Method is made for you.</p>
+            <p className="mb-4 text-gray-200 text-lg">See you inside 💪</p>
+          </div>
+
+          {/* Start Now Button */}
+          <div className="flex flex-col items-center justify-center mt-8 mb-8">
+            <button
+              className="button-primary relative w-[280px] h-[60px] flex items-center justify-center rounded-full shadow-2xl border-none outline-none"
+              style={{
+                fontWeight: 800,
+                fontSize: '1.3rem',
+                letterSpacing: '0.02em',
+                textShadow: '0 2px 8px #000a',
+                border: 'none',
+                outline: 'none',
+                WebkitBackdropFilter: 'blur(8px)',
+                backdropFilter: 'blur(8px)',
+                transition: 'none',
+                transform: 'none'
+              }}
+            >
+              <span className="font-black w-full text-center">START NOW</span>
+            </button>
+
+          </div>
+          <div className="mt-2"></div>
         </div>
       </div>
     </div>

@@ -10,6 +10,14 @@ function VideoSection() {
   const [duration, setDuration] = useState(0);
   const [hasStarted, setHasStarted] = useState(false);
 
+  // New states for auto-play functionality
+  const [hasAutoPlayed, setHasAutoPlayed] = useState(false);
+  const [showPlayButton, setShowPlayButton] = useState(true);
+  const [videoInView, setVideoInView] = useState(false);
+  const [showSoundMessage, setShowSoundMessage] = useState(false);
+  const [hasUserInteracted, setHasUserInteracted] = useState(false);
+  const [userPausedVideo, setUserPausedVideo] = useState(false);
+
   // Initialize volume when component mounts
   useEffect(() => {
     if (videoRef.current) {
@@ -17,6 +25,51 @@ function VideoSection() {
       videoRef.current.muted = true;
     }
   }, []);
+
+  // Auto-play video when it comes into view and pause when it leaves
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setVideoInView(true);
+            // Only auto-play if user has never manually paused this video
+            if (videoRef.current && videoRef.current.paused && !userPausedVideo) {
+              videoRef.current.play().then(() => {
+                setHasAutoPlayed(true);
+                setIsPlaying(true);
+                if (!hasAutoPlayed) {
+                  setShowSoundMessage(true); // Show sound message when auto-playing for first time
+                }
+              }).catch((error) => {
+                console.log("Auto-play failed:", error);
+              });
+            }
+          } else {
+            // Video is out of view - pause it (but don't set userPausedVideo flag)
+            setVideoInView(false);
+            if (videoRef.current && !videoRef.current.paused) {
+              videoRef.current.pause();
+              setIsPlaying(false);
+            }
+          }
+        });
+      },
+      {
+        threshold: 0.3, // Trigger when 30% of the video is visible
+      }
+    );
+
+    if (videoRef.current) {
+      observer.observe(videoRef.current);
+    }
+
+    return () => {
+      if (videoRef.current) {
+        observer.unobserve(videoRef.current);
+      }
+    };
+  }, [userPausedVideo]); // Re-run when userPausedVideo changes
 
   const handleTimeUpdate = () => {
     if (videoRef.current) {
@@ -50,10 +103,43 @@ function VideoSection() {
         videoRef.current.play();
         setIsPlaying(true);
         setHasStarted(true);
+        setUserPausedVideo(false); // User is playing, reset pause flag
       } else {
         videoRef.current.pause();
         setIsPlaying(false);
+        setUserPausedVideo(true); // User manually paused
       }
+    }
+  };
+
+  // Special handler for play button click
+  const handlePlayButtonClick = () => {
+    setShowPlayButton(false);
+    setHasUserInteracted(true);
+    setShowSoundMessage(false); // Hide sound message when play button is clicked
+    if (videoRef.current) {
+      // Enable sound when user clicks play button
+      videoRef.current.muted = false;
+      setIsMuted(false);
+      setVolume(0.5);
+      videoRef.current.volume = 0.5;
+
+      if (!isPlaying) {
+        videoRef.current.play();
+        setIsPlaying(true);
+        setHasStarted(true);
+      }
+    }
+  };
+
+  // Handler for video click - acts like play button when visible
+  const handleVideoClick = () => {
+    if (showPlayButton) {
+      // If play button is visible, clicking anywhere acts like clicking the play button
+      handlePlayButtonClick();
+    } else {
+      // Normal video controls when play button is not visible
+      togglePlayPause();
     }
   };
 
@@ -96,7 +182,7 @@ function VideoSection() {
     <div className="flex justify-center items-center my-16 px-4">
       <div className="relative w-full max-w-4xl mx-auto">
         <div className="relative aspect-video rounded-2xl overflow-hidden border-[3px] border-[#2fbfd7] shadow-[0_0_30px_rgba(47,191,215,0.5),0_0_60px_rgba(47,191,215,0.3)]">
-          <div className="relative aspect-video cursor-pointer" onClick={togglePlayPause}>
+          <div className="relative aspect-video cursor-pointer" onClick={handleVideoClick}>
             <video
               ref={videoRef}
               className="absolute top-0 left-0 w-full h-full object-cover"
@@ -110,10 +196,20 @@ function VideoSection() {
               Your browser does not support the video tag.
             </video>
             
-            {/* Play Button Overlay (visible when paused) */}
-            {!isPlaying && (
+            {/* Play Button Overlay (visible until clicked or when paused after manual interaction) */}
+            {(showPlayButton || (!isPlaying && !showPlayButton)) && (
               <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-20 h-20 bg-[#2fbfd7] rounded-full flex items-center justify-center opacity-80 hover:bg-[#23a6bb] transition-colors">
+                <div
+                  className="w-20 h-20 bg-[#2fbfd7] rounded-full flex items-center justify-center opacity-80 hover:bg-[#23a6bb] transition-colors"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    if (showPlayButton) {
+                      handlePlayButtonClick();
+                    } else {
+                      togglePlayPause();
+                    }
+                  }}
+                >
                   <svg className="w-10 h-10 text-white" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M8 5v14l11-7z" />
                   </svg>
@@ -121,9 +217,29 @@ function VideoSection() {
               </div>
             )}
 
+            {/* Sound Message - Beautiful UI in top right */}
+            {showSoundMessage && !hasUserInteracted && (
+              <div className="absolute top-4 right-4 z-30">
+                <div className="bg-gradient-to-r from-[#2fbfd7] to-[#23a6bb] text-white px-4 py-2 rounded-full shadow-lg animate-pulse">
+                  <div className="flex items-center space-x-2">
+                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+                    </svg>
+                    <span className="text-sm font-medium whitespace-nowrap">Click video to play sound</span>
+                  </div>
+                  {/* Animated arrow pointing to video */}
+                  <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2">
+                    <div className="w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-[#23a6bb]"></div>
+                  </div>
+                  {/* Subtle glow effect */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#2fbfd7] to-[#23a6bb] rounded-full opacity-30 blur-sm -z-10"></div>
+                </div>
+              </div>
+            )}
+
             {/* Volume Controls */}
-            <div 
-              className="absolute right-4 top-4 flex items-center space-x-2"
+            <div
+              className={`absolute right-4 flex items-center space-x-2 transition-all duration-300 ${showSoundMessage ? 'top-16' : 'top-4'}`}
               onMouseEnter={() => setShowVolumeSlider(true)}
               onMouseLeave={() => setShowVolumeSlider(false)}
             >
@@ -172,7 +288,7 @@ function VideoSection() {
               {/* Mute/Unmute Button */}
               <button
                 onClick={toggleMute}
-                className="w-10 h-10 bg-[#2fbfd7] rounded-full flex items-center justify-center opacity-80 hover:bg-[#23a6bb] transition-all duration-300 transform hover:scale-110"
+                className="w-10 h-10 bg-[#2fbfd7] rounded-full flex items-center justify-center opacity-80"
               >
                 {isMuted ? (
                   <svg className="w-6 h-6 text-white" viewBox="0 0 24 24" fill="currentColor">
