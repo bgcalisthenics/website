@@ -335,7 +335,7 @@ const FAQSection = () => {
         {/* Results Videos - Mobile: Stacked, Desktop: 3x4 Grid Layout */}
         <div style={{maxWidth: '1400px', margin: '0 auto', padding: '0 1rem', marginTop: '16px'}} className="video-gallery-container">
           {/* Row 1 */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-0 sm:gap-0 mb-0">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-0 sm:gap-4 mb-0 sm:mb-6">
             {/* Front Lever Video */}
             <div
               className="aspect-[828/1792] relative flex items-center justify-center cursor-pointer"
@@ -512,7 +512,7 @@ const FAQSection = () => {
           </div>
 
           {/* Row 2 */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-0 sm:gap-0 mb-0">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-0 sm:gap-4 mb-0 sm:mb-6">
             {/* HSPU Video */}
             <div
               className="aspect-[828/1792] relative flex items-center justify-center cursor-pointer"
@@ -689,7 +689,7 @@ const FAQSection = () => {
           </div>
 
           {/* Row 3 */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-0 sm:gap-0 mb-0">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-0 sm:gap-4 mb-0 sm:mb-6">
             {/* Adv Tuck Video */}
             <div
               className="aspect-[828/1792] relative flex items-center justify-center cursor-pointer"
@@ -866,7 +866,7 @@ const FAQSection = () => {
           </div>
 
           {/* Row 4 */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-0 sm:gap-0 mb-0">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-0 sm:gap-4 mb-0">
             {/* Muscle Up Video */}
             <div
               className="aspect-[828/1792] relative flex items-center justify-center cursor-pointer"
