@@ -277,7 +277,7 @@ function HeroSection() {
 
           {/* Profile Image */}
           <div className="mx-auto w-full max-w-xs sm:max-w-xl aspect-video rounded-xl mb-8 overflow-hidden">
-            <img src="/images/ben.jpg" alt="Ben's profile" className="w-full h-full object-cover" />
+            <img src="/images/me.png" alt="Ben's profile" className="w-full h-full object-cover" />
           </div>
 
           {/* Rounded bar containing the profile picture and social media icons */}

@@ -112,8 +112,8 @@ function TimelineSection() {
         { name: "Full Planche", icon: "" },
         { name: "Front Lever", icon: "" },
         { name: "One Arm Handstand", icon: "" },
-        { name: "One Arm Pull-up", icon: "" },
-        { name: "Human Flag", icon: "" }
+      //{ name: "One Arm Pull-up", icon: "" },
+      //{ name: "Human Flag", icon: "" }
       ]
     }
   ];
