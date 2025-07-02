@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default function CTASection() {
   return (
@@ -8,12 +9,12 @@ export default function CTASection() {
         <p className="text-lg text-gray-700 mb-8">
           Join SkillSurge today and unlock your full potential with expert guidance, proven programs, and a supportive community.
         </p>
-        <a
-          href="#programs"
+        <Link
+          to="/programs"
           className="inline-block px-8 py-3 rounded-md bg-primary text-white font-semibold text-lg shadow hover:bg-accent transition-colors"
         >
           Get Started Now
-        </a>
+        </Link>
       </div>
     </section>
   );

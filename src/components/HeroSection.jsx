@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import VideoSection from './VideoSection';
 import '../index.css';
 import useInView from "../hooks/useInView";
@@ -373,8 +374,8 @@ export default function HeroSection() {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mb-12">
-            <a
-              href="/train"
+            <Link
+              to="/train"
               className="group relative overflow-hidden bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold px-10 py-5 text-xl rounded-2xl shadow-2xl transform transition-all duration-300 hover:scale-105 hover:shadow-blue-500/25"
             >
               <span className="relative z-10 flex items-center gap-3">
@@ -384,14 +385,14 @@ export default function HeroSection() {
                 </svg>
               </span>
               <div className="absolute inset-0 bg-gradient-to-r from-blue-700 to-blue-800 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            </a>
+            </Link>
 
-            <a
-              href="/impact"
+            <Link
+              to="/impact"
               className="group flex items-center gap-2 text-gray-700 hover:text-blue-600 font-semibold px-6 py-3 rounded-xl border-2 border-gray-300 hover:border-blue-500 transition-all duration-300 bg-white/80 backdrop-blur-sm"
             >
               Watch Success Stories
-            </a>
+            </Link>
           </div>
 
 
