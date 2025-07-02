@@ -63,6 +63,8 @@ export default function App() {
             <Route path="/train" element={<TrainSection />} />
             <Route path="/pricing" element={<PricingSection />} />
             <Route path="/impact" element={<ImpactSection />} />
+            {/* Catch-all route - redirects any unmatched routes to home */}
+            <Route path="*" element={<HomePage />} />
           </Routes>
         </main>
         <Footer />
