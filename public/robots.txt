@@ -1,0 +1,15 @@
+User-agent: *
+Disallow: /about
+Disallow: /about/
+Allow: /
+Allow: /train
+Allow: /pricing
+Allow: /impact
+
+# Prevent indexing of specific pages with personal information
+Disallow: /*founder*
+Disallow: /*team*
+Disallow: /*ben*
+Disallow: /*aidric*
+
+Sitemap: https://yourdomain.com/sitemap.xml
