@@ -1,4 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const GlobalCommunity = () => {
   const videoRefs = useRef([]);
@@ -225,15 +226,15 @@ const GlobalCommunity = () => {
               </div>
             </div>
 
-            <a
-              href="/train"
+            <Link
+              to="/train"
               className="inline-flex items-center gap-3 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold px-10 py-5 text-lg rounded-2xl shadow-xl transform transition-all duration-300 hover:scale-105 hover:shadow-blue-500/25"
             >
               <span>Start Your Transformation</span>
               <svg className="w-6 h-6 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
               </svg>
-            </a>
+            </Link>
           </div>
         </div>
       </div>
