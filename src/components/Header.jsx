@@ -19,7 +19,7 @@ const Header = () => {
           {/* Logo */}
           <div className="flex items-center">
             <Link to="/">
-              <img src="/public/images/MAKOVA.png" alt="Makova Logo" className="h-10 w-auto object-contain" style={{ maxHeight: '40px' }} />
+              <img src="/images/MAKOVA.png" alt="Makova Logo" className="h-10 w-auto object-contain" style={{ maxHeight: '40px' }} />
             </Link>
           </div>
           {/* Navigation */}
