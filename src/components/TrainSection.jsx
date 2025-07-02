@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { MessageSquare, Activity, Dumbbell, Crown } from 'lucide-react';
 import ChatbotComponent from './ChatbotComponent';
 import RepBotComponent from './RepBotComponent';
@@ -156,13 +157,13 @@ const TrainSection = () => {
                 <p className="makova-body text-gray-300 mb-4">
                   Upgrade to <span className="makova-accent text-white">Makova Pro</span> for access to all 13 skill-based programs and a private community.
                 </p>
-                <a
-                  href="/pricing"
+                <Link
+                  to="/pricing"
                   className="w-full bg-white text-black makova-h4 py-3 rounded-md hover:bg-gray-100 transition-colors duration-300 text-center block"
                   style={{ textDecoration: 'none' }}
                 >
                   Upgrade to Pro
-                </a>
+                </Link>
               </div>
             </div>
           </div>

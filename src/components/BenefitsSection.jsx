@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import useInView from "../hooks/useInView";
 
 export default function BenefitsSection() {
@@ -202,8 +203,8 @@ export default function BenefitsSection() {
           <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
             Join thousands of teens who are already transforming their lives. Your journey starts today.
           </p>
-          <a
-            href="#pricing"
+          <Link
+            to="/pricing"
             className="inline-flex items-center gap-3 bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 text-white font-bold px-10 py-5 text-xl rounded-2xl shadow-2xl transform transition-all duration-300 hover:scale-105"
           >
             <span>🚀</span>
@@ -211,7 +212,7 @@ export default function BenefitsSection() {
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
             </svg>
-          </a>
+          </Link>
         </div>
       </div>
     </section>

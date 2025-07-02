@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const featuresFree = [
   {
@@ -95,12 +96,12 @@ const PricingSection = () => {
             ))}
           </ul>
 
-          <a
-            href="/train"
+          <Link
+            to="/train"
             className="w-full py-4 rounded-xl text-center font-bold text-sm tracking-wide transition-all duration-300 bg-blue-600 text-white hover:bg-blue-700"
           >
             Get Started Free
-          </a>
+          </Link>
         </div>
 
         {/* Pro Card - Featured */}
