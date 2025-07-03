@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import './Header.css';
 
 const navLinks = [
-  { name: 'Home', to: '/' },
-  { name: 'Train', to: '/train' },
-  { name: 'Pricing', to: '/pricing' },
-  { name: 'About', to: '/about' },
-  { name: 'Impact', to: '/impact' },
-  { name: 'Contact', to: '/contact' },
+  { name: 'Home', to: '/', icon: '🏠' },
+  { name: 'Train', to: '/train', icon: '💪' },
+  { name: 'Pricing', to: '/pricing', icon: '💎' },
+  { name: 'About', to: '/about', icon: '📖' },
+  { name: 'Impact', to: '/impact', icon: '🌍' },
+  { name: 'Contact', to: '/contact', icon: '📧' },
 ];
 
 const Header = () => {
@@ -95,19 +96,81 @@ const Header = () => {
           </div>
         </nav>
 
-        {/* Mobile Menu */}
-        <div className={`md:hidden ${isMobileMenuOpen ? 'block' : 'hidden'}`}>
-          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t border-gray-200 shadow-lg">
-            {navLinks.map(link => (
+        {/* Mobile Menu Overlay */}
+        {isMobileMenuOpen && (
+          <div
+            className="fixed inset-0 z-40 md:hidden"
+            onClick={closeMobileMenu}
+          >
+            <div className="fixed inset-0 bg-black bg-opacity-50 transition-opacity duration-300"></div>
+          </div>
+        )}
+
+        {/* Mobile Menu Sidebar */}
+        <div className={`fixed top-0 left-0 z-50 h-full w-80 bg-gradient-to-b from-white to-gray-50 shadow-2xl transform transition-transform duration-300 ease-in-out md:hidden ${
+          isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'
+        }`}>
+          {/* Menu Header */}
+          <div className="flex items-center justify-between p-6 border-b border-gray-200">
+            <Link to="/" onClick={closeMobileMenu}>
+              <img
+                src="/images/MAKOVA.png"
+                alt="Makova Logo"
+                className="h-8 w-auto object-contain"
+              />
+            </Link>
+            <button
+              onClick={closeMobileMenu}
+              className="p-2 rounded-md text-gray-500 hover:text-gray-700 hover:bg-gray-100 transition-colors"
+            >
+              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+
+          {/* Menu Items */}
+          <div className="py-6">
+            {navLinks.map((link, index) => (
               <Link
                 key={link.name}
                 to={link.to}
                 onClick={closeMobileMenu}
-                className={`block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition-colors${location.pathname === link.to ? ' text-blue-600 bg-blue-50 font-bold' : ''}`}
+                className={`block px-6 py-4 text-lg font-medium transition-all duration-200 hover:bg-blue-50 hover:text-blue-600 hover:border-r-4 hover:border-blue-600 ${
+                  location.pathname === link.to
+                    ? 'text-blue-600 bg-blue-50 border-r-4 border-blue-600 font-bold'
+                    : 'text-gray-700'
+                }`}
+                style={{
+                  animationDelay: `${index * 50}ms`,
+                  animation: isMobileMenuOpen ? 'slideInLeft 0.3s ease-out forwards' : 'none'
+                }}
               >
-                {link.name}
+                <div className="flex items-center space-x-4">
+                  {/* Icon for each menu item */}
+                  <span className="text-2xl">{link.icon}</span>
+                  <span>{link.name}</span>
+                </div>
               </Link>
             ))}
+          </div>
+
+          {/* Menu Footer */}
+          <div className="absolute bottom-0 left-0 right-0 p-6 border-t border-gray-200 bg-gray-50">
+            <div className="text-center">
+              <p className="text-sm text-gray-500 mb-2">Empowering teens worldwide</p>
+              <div className="flex justify-center space-x-4">
+                <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+                  <div className="w-4 h-4 bg-blue-600 rounded-full"></div>
+                </div>
+                <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+                  <div className="w-4 h-4 bg-green-600 rounded-full"></div>
+                </div>
+                <div className="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center">
+                  <div className="w-4 h-4 bg-purple-600 rounded-full"></div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </header>
