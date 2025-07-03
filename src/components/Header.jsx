@@ -3,12 +3,12 @@ import { Link, useLocation } from 'react-router-dom';
 import './Header.css';
 
 const navLinks = [
-  { name: 'Home', to: '/', icon: '🏠' },
-  { name: 'Train', to: '/train', icon: '💪' },
-  { name: 'Pricing', to: '/pricing', icon: '💎' },
-  { name: 'About', to: '/about', icon: '📖' },
-  { name: 'Impact', to: '/impact', icon: '🌍' },
-  { name: 'Contact', to: '/contact', icon: '📧' },
+  { name: 'Home', to: '/' },
+  { name: 'Train', to: '/train' },
+  { name: 'Pricing', to: '/pricing' },
+  { name: 'About', to: '/about' },
+  { name: 'Impact', to: '/impact' },
+  { name: 'Contact', to: '/contact' },
 ];
 
 const Header = () => {
@@ -146,9 +146,9 @@ const Header = () => {
                   animation: isMobileMenuOpen ? 'slideInLeft 0.3s ease-out forwards' : 'none'
                 }}
               >
-                <div className="flex items-center space-x-4">
-                  {/* Icon for each menu item */}
-                  <span className="text-2xl">{link.icon}</span>
+                <div className="flex items-center space-x-3">
+                  {/* Clean bullet point */}
+                  <div className="w-2 h-2 bg-current rounded-full opacity-60"></div>
                   <span>{link.name}</span>
                 </div>
               </Link>
