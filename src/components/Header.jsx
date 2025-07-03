@@ -146,11 +146,7 @@ const Header = () => {
                   animation: isMobileMenuOpen ? 'slideInLeft 0.3s ease-out forwards' : 'none'
                 }}
               >
-                <div className="flex items-center space-x-3">
-                  {/* Clean bullet point */}
-                  <div className="w-2 h-2 bg-current rounded-full opacity-60"></div>
-                  <span>{link.name}</span>
-                </div>
+                <span>{link.name}</span>
               </Link>
             ))}
           </div>
